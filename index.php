@@ -2,7 +2,7 @@
 
 // IMPORTANT!!! Define base path constant
 define('BASE_PATH', __DIR__);
-define('ARCH_PATH', '/var/www/architect');
+define('ARCH_PATH', '/var/www/architectphp');
 
 // IMPORTANT!!! Require architect framework autoloader
 require_once ARCH_PATH.'/src/autoload.php';
