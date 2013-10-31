@@ -1,5 +1,5 @@
 <?php
-            
+
 // add main route
 r('/', function() {
 	// add content
@@ -47,6 +47,7 @@ r('/demo/install', function() {
     \Arch\Demo\ModelUser::checkDatabase();
 });
 
-require_once 'register.php';
-require_once 'login.php';
-require_once 'crud.php';
+// add more routes
+require_once __DIR__.'/register.php';
+require_once __DIR__.'/login.php';
+require_once __DIR__.'/crud.php';
