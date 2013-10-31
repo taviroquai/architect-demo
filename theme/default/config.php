@@ -1,14 +1,16 @@
 <?php
 
-app()->theme
-	->setPath(BASE_PATH.'/theme/default/layout.php')
-	->addSlot('topbar');
+// add custom slots besides content, css and js
+$this->addSlot('topbar');
+
+// set default template path
+$this->setTemplate(BASE_PATH.'/theme/default/layout.php');
 
 // add theme css
-c(BASE_URL.'/theme/default/css/bootstrap.min.css', 'css');
-c(BASE_URL.'/theme/default/css/bootstrap-responsive.min.css', 'css');
+$this->addContent(BASE_URL.'/theme/default/css/bootstrap.min.css', 'css');
+$this->addContent(BASE_URL.'/theme/default/css/bootstrap-responsive.min.css', 'css');
 
 // add theme js
-c(BASE_URL.'/theme/default/js/bootstrap.min.js', 'js');
-c(u('/arch/asset/js/arch.js'), 'js');
+$this->addContent(BASE_URL.'/theme/default/js/bootstrap.min.js', 'js');
+$this->addContent(u('/arch/asset/js/arch.js'), 'js');
 
