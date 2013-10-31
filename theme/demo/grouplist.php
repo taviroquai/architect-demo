@@ -1,10 +1,8 @@
-<ul>
-    <?php while ($item = $stm->fetchObject()) { ?>
-    <li>
-        <a draggable="true" href="#" 
-           data-ui="group/<?=$item->id?>">
-            <?=$item->name?>
-        </a>
-    </li>
+<div class="btn-group" data-toggle="buttons-checkbox">
+    <?php foreach ($groups as $group) { ?>
+    <button type="button" data-id="<?=$group->id?>"
+            class="btn<?=in_array($group->id, $selected)?' active':''?>">
+            <?=$group->name?>
+    </button>
     <?php } ?>
-</ul>
+</div>

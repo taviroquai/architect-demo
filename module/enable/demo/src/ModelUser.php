@@ -108,7 +108,7 @@ class ModelUser
         $rule = $validator->createRule('email')
                 ->setErrorMessage('Use other email')
                 ->setAction('unique')
-                ->addParam(q('demo_user')->s('email')->column(0));
+                ->addParam(q('demo_user')->s('email')->fetchColumn());
         $validator->addRule($rule);
         
         $rule = $validator->createRule('password')
@@ -146,8 +146,8 @@ class ModelUser
      */
     public function load($id)
     {
-        $sth = q('demo_user')->s('*')->w('id = ?', array($id))->run();
-        return $sth->fetchObject();
+        $user = q('demo_user')->s('*')->w('id = ?', array($id))->fetchObject();
+        return $user;
     }
     
     /**
@@ -158,8 +158,8 @@ class ModelUser
      */
     public function find($where, $data)
     {
-        $sth = q('demo_user')->s('*')->w($where, $data)->run();
-        return $sth->fetchObject();
+        $users = q('demo_user')->s('*')->w($where, $data)->fetchAll();
+        return $users;
     }
 
     /**
@@ -171,8 +171,7 @@ class ModelUser
     {
         $data = array('email' => $user->email, 'password' => $user->password);
         if (empty($user->id)) {
-            $stm = q('demo_user')->i($data)->run();
-            $user->id = app()->db->lastInsertId();
+            $user->id = q('demo_user')->i($data)->getInsertId();
         }
         else $stm = q('demo_user')->u($data)->w('id = ?', array($user->id))->run();
         return $stm;

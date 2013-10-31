@@ -6,8 +6,8 @@ var CRUD = {
     current: 1,
     userform: null,
     userlist: null,
-    grouplist: null,
-    usergroupslist: null
+    usergroupslist: null,
+    selectedGroups: []
 };
 
 /**
@@ -17,10 +17,8 @@ CRUD.init = function () {
     
     CRUD.userform   = $('#containerUserForm');
     CRUD.userlist   = $('#containerUserList');
-    CRUD.grouplist  = $('#containerGroupList');
     CRUD.usergroupslist  = $('#containerUserGroups');
     
-    CRUD.showGroupList();
     CRUD.showUserList();
     CRUD.showUserGroupList();
     CRUD.showUserForm();
@@ -57,15 +55,14 @@ CRUD.addEvents = function () {
         var data = $(e.target).serialize();
         CRUD.saveUser(data);
     });
-
-    Arch.drag('#containerGroupList a', '#containerUserGroups', function(data)
-    {
-        CRUD.addGroup(data.split('/')[1]);
-    });
-
-    Arch.drag('#containerUserGroups a', '#containerGroupList', function(data)
-    {
-        CRUD.removeGroup(data.split('/')[1]);
+    
+    $(document).on('click', '#containerUserGroups', function(e) {
+        var data = [], group;
+        $('#containerUserGroups button').each(function(i, item) {
+            group = $(item);
+            if (group.hasClass('active')) data.push(group.attr('data-id'));
+        });
+        CRUD.saveGroup(data);
     });
 }
 
@@ -85,20 +82,12 @@ CRUD.getUserListUrl = function () {
     return Arch.url('/demo/crud/user/list');
 }
 
-CRUD.getGroupListUrl = function () {
-    return Arch.url('/demo/crud/group/list');
-}
-
 CRUD.getUserGroupsListUrl = function () {
     return Arch.url('/demo/crud/user/'+CRUD.current+'/group/list');
 }
 
-CRUD.getAddGroupUrl = function () {
-    return Arch.url('/demo/crud/user/add_group');
-}
-
-CRUD.getRemoveGroupUrl = function () {
-    return Arch.url('/demo/crud/user/del_group');
+CRUD.getSaveGroupUrl = function () {
+    return Arch.url('/demo/crud/user/save/group');
 }
 
 CRUD.getSaveUserUrl = function () {
@@ -118,26 +107,13 @@ CRUD.showUserList = function () {
     CRUD.userlist.load(CRUD.getUserListUrl());
 }
 
-CRUD.showGroupList = function () {
-    CRUD.grouplist.load(CRUD.getGroupListUrl());
-}
-
 CRUD.showUserGroupList = function () {
     CRUD.usergroupslist.load(CRUD.getUserGroupsListUrl());
 }
 
-CRUD.addGroup = function (group_id) {
+CRUD.saveGroup = function (group_id) {
     var data = {id_user: CRUD.current, id_group: group_id};
-    CRUD.ajax(CRUD.getAddGroupUrl(), data, function () {
-        CRUD.showUserGroupList();
-    });
-}
-
-CRUD.removeGroup = function (group_id) {
-    var data = {id_user: CRUD.current, id_group: group_id};
-    CRUD.ajax(CRUD.getRemoveGroupUrl(), data, function () {
-        CRUD.showUserGroupList();
-    });
+    CRUD.ajax(CRUD.getSaveGroupUrl(), data);
 }
 
 CRUD.saveUser = function (data) {

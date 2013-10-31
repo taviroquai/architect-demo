@@ -9,8 +9,9 @@
     <label></label>
     <input type="hidden" name="id" 
            value="<?=empty($user->id) ? '' : $user->id?>" />
-    <button type="submit" class="btn">Save</button>
+    <button type="submit" class="btn btn-success">Save</button>
     <?php if (!empty($user->id)) { ?>
-        <button id="delete" data-ui="user/<?=$user->id?>" class="btn btn-primary">Delete</button>
+        <button id="delete" data-ui="user/<?=$user->id?>" class="btn btn-danger">Delete</button>
     <?php } ?>
+    <button id="new" class="btn btn-primary">New</button>
 </form>

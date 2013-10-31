@@ -21,8 +21,7 @@ class ModelForum
         $topic['datetime'] = date('Y-m-d H:i:s');
         unset($topic['body']);
         unset($topic['topic']);
-        q('demo_topic')->i($topic)->run();
-        $data['id_topic'] = q('demo_topic')->id();
+        $data['id_topic'] = q('demo_topic')->i($topic)->getInsertId();
         $this->addPost($data);
         return $data['id_topic'];
     }
@@ -34,8 +33,7 @@ class ModelForum
         $post['id_user'] = 1;
         $post['id_topic'] = $data['id_topic'];
         $post['body'] = $data['body'];
-        q('demo_post')->i($post)->run();
-        return q('demo_post')->id();
+        return q('demo_post')->i($post)->getInsertId();
     }
     
     public function getForum($id)
@@ -43,7 +41,6 @@ class ModelForum
         return q('demo_forum')
             ->s()
             ->w('id = ?', array($id))
-            ->run()
             ->fetchObject();
     }
     
@@ -52,7 +49,6 @@ class ModelForum
         return q('demo_topic')
             ->s()
             ->w('id = ?', array($id))
-            ->run()
             ->fetchObject();
     }
 
@@ -62,8 +58,7 @@ class ModelForum
             ->s('demo_forum.*, count(id_forum) as total_topics')
             ->j('demo_topic', 'demo_forum.id = demo_topic.id_forum')
             ->g('demo_forum.id')
-            ->run()
-            ->fetchAll(\PDO::FETCH_CLASS);
+            ->fetchAll();
     }
     
     public function getTopics($id_forum)
@@ -73,8 +68,7 @@ class ModelForum
             ->j('demo_post', 'demo_topic.id = demo_post.id_topic')
             ->w('demo_topic.id_forum = ?', array($id_forum))
             ->g('demo_topic.id')
-            ->run()
-            ->fetchAll(\PDO::FETCH_CLASS);
+            ->fetchAll();
     }
     
     public function getPosts($id_topic)
@@ -82,6 +76,6 @@ class ModelForum
         return q('demo_post')
             ->s()
             ->w('demo_post.id_topic = ?', array($id_topic))
-            ->run()->fetchAll(\PDO::FETCH_CLASS);
+            ->fetchAll();
     }
 }

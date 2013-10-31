@@ -119,12 +119,6 @@ class ViewMain extends \Arch\View
         // demo of the forum
         $forum = app()->createForum();
         $forum_model = new \Arch\Demo\ModelForum();
-        if (p('topic')) {
-            $forum_model->addTopic(p());
-        }
-        if (p('post')) {
-            $forum_model->addPost(p());
-        }
         $forum->set('url', '/demo');
         $forum->set('categories', $forum_model->getCategories());
         $this->addContent($forum);
