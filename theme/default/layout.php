@@ -67,7 +67,7 @@
       <hr>
 
       <footer>
-        <p>&copy; Marco Afonso 2013</p>
+        <p>Architect PHP Framework &copy; Marco Afonso 2013</p>
       </footer>
 
     </div> <!-- /container -->
