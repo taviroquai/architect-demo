@@ -1,5 +1,5 @@
 <?php
-
+         
 // IMPORTANT!!! Require composer autoload
 require_once 'vendor/autoload.php';
 require_once 'vendor/taviroquai/architectphp/aliases.php';

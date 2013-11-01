@@ -8,17 +8,18 @@ class ViewNavLogin extends \Arch\View
         parent::__construct(THEME_PATH.'/demo/login_navform.php');
 
         $login = app()->session->login;
+        
         if (empty($login)) {
             $this->set('loginUrl', app()->url('/login'));
         }
         else {
             // set session and logout template
-            $this->path = THEME_PATH.'/demo/login_navsession.php';
+            $this->setTemplate(THEME_PATH.'/demo/login_navsession.php');
 
             // set default data
             $this->set('logoutUrl', app()->url('/logout'));
             $model = new \Arch\Demo\ModelUser();
-            $user = $model->find('email = ?', array($login));
+            $user = $model->findOne('email = ?', array($login));
             $this->set('user', $user);
         }
     }

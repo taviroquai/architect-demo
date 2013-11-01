@@ -26,7 +26,7 @@ e('login.form.before.view', function() {
         // login user
         $model = new \Arch\Demo\ModelUser();
         $user = $model->login(p('email'), p('password'));
-
+        
         if ($user) {
             // start user session
             app()->session->login = $user->email;

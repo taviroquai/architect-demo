@@ -17,11 +17,11 @@ class ViewLogin extends \Arch\View
             }
         } else {
             // set session and logout template
-            $this->path = THEME_PATH.'/demo/login_session.php';
+            $this->setTemplate(THEME_PATH.'/demo/login_session.php');
             // set default data
             $this->set('logoutUrl', app()->url('/logout'));
             $model = new \Arch\Demo\ModelUser();
-            $user = $model->find('email = ?', array($login));
+            $user = $model->findOne('email = ?', array($login));
             $this->set('user', $user);
         }
     }

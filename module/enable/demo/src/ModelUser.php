@@ -58,11 +58,14 @@ class ModelUser
                 ->setErrorMessage('Invalid email address')
                 ->setAction('isEmail');
         $validator->addRule($rule);
-        
+
         if ($validator->validate()->getResult()) {
             $email      = filter_var($email);
             $password   = s(filter_var($password));
-            $user = $this->find('email = ? and password = ?', array($email, $password));
+            $user = $this->findOne(
+                'email = ? and password = ?', 
+                array($email, $password)
+            );
             if (!$user) m('Invalid email/password', 'alert alert-error');
         }
         return $user;
@@ -160,6 +163,19 @@ class ModelUser
     {
         $users = q('demo_user')->s('*')->w($where, $data)->fetchAll();
         return $users;
+    }
+    
+    /**
+     * Returns all users matching the $where criteria
+     * @param string $where The search criteria
+     * @param array $data The criteria data
+     * @return array|boolean
+     */
+    public function findOne($where, $data)
+    {
+        $items = $this->find($where, $data);
+        if (empty($items)) return false;
+        return reset($items);
     }
 
     /**
