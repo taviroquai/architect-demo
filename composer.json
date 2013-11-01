@@ -1,5 +1,6 @@
 {
 	"require": {
-		"taviroquai/architectphp": "dev-master"
+		"taviroquai/architectphp": "dev-master",
+        "phpmailer/phpmailer": "dev-master"
 	}
 }

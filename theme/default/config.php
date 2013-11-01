@@ -4,7 +4,7 @@
 $this->addSlot('topbar');
 
 // set default template path
-$this->setTemplate(BASE_PATH.'/theme/default/layout.php');
+$this->setTemplate(THEME_PATH.'/default/layout.php');
 
 // add theme css
 $this->addContent(BASE_URL.'/theme/default/css/bootstrap.min.css', 'css');

@@ -3,13 +3,13 @@
 r('/demo/crud/user/(:num)/edit', function($id) {
     $user = q('demo_user')->s()->w('id = ? ', array($id))->fetchObject();
     $data = array('user' => $user);
-    $v = new \Arch\View(BASE_PATH.'/theme/demo/userform.php', $data);
+    $v = new \Arch\View(THEME_PATH.'/demo/userform.php', $data);
     o($v);
 });
 
 r('/demo/crud/user/list', function() {
     $data = array('users' => q('demo_user')->s()->fetchAll());
-    $v = new \Arch\View(BASE_PATH.'/theme/demo/userlist.php', $data);
+    $v = new \Arch\View(THEME_PATH.'/demo/userlist.php', $data);
     o($v);
 });
 
@@ -20,7 +20,7 @@ r('/demo/crud/user/(:num)/group/list', function($id) {
         ->w('id_user = ?', array($id))
         ->fetchColumn();
     $data = array('groups' => $groups, 'selected' => $selected);
-    $v = new \Arch\View(BASE_PATH.'/theme/demo/grouplist.php', $data);
+    $v = new \Arch\View(THEME_PATH.'/demo/grouplist.php', $data);
     o($v);
 });
 

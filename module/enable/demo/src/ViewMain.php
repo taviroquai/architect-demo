@@ -6,7 +6,7 @@ class ViewMain extends \Arch\View
 {
     public function __construct()
     {
-        parent::__construct(BASE_PATH.'/theme/demo/demo.php');
+        parent::__construct(THEME_PATH.'/demo/demo.php');
         
         // add demo stylesheet
         c(BASE_URL.'/theme/demo/css/style.css', 'css');
@@ -88,17 +88,14 @@ class ViewMain extends \Arch\View
         unset($root);
         
         // demo of the file explorer
-        $explorer = app()->createFileExplorer();
-        $explorer->set('base', BASE_PATH.'/theme');
+        $explorer = app()->createFileExplorer(THEME_PATH);
         $explorer->set('url', '/demo');
         $this->addContent($explorer);
         unset($explorer);
         
         // demo of the file gallery
-        $tmpl = implode(DIRECTORY_SEPARATOR, 
-                array(ARCH_PATH,'theme','architect','filegallery.php'));
-        $explorer = app()->createFileExplorer($tmpl);
-        $explorer->set('base', BASE_PATH.'/theme/demo/img');
+        $tmpl = ARCH_PATH.'/theme/architect/filegallery.php';
+        $explorer = app()->createFileExplorer(THEME_PATH.'/demo/img', $tmpl);
         $explorer->set('url', '/demo');
         $explorer->set('param', 'gal'); // $_GET['gal'] = $path
         $this->addContent($explorer);

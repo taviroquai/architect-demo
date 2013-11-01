@@ -3,7 +3,7 @@
 // add main route
 r('/', function() {
 	// add content
-    c(new \Arch\View(BASE_PATH.'/theme/demo/default.php'));
+    c(new \Arch\View(THEME_PATH.'/demo/default.php'));
 });
 
 // add 404 route
@@ -16,12 +16,12 @@ r('/demo', function() {
     
     // demo of file upload
     if ($file = f(0)) {
-        app()->upload($file, BASE_PATH.'/theme/data');
+        app()->upload($file, THEME_PATH.'/data');
     }
     
     // demo of download file
     if (g('dl')) {
-        app()->download(BASE_PATH.'/theme/default/img/'.g('dl'));
+        app()->download(THEME_PATH.'/default/img/'.g('dl'));
     }
     if (g('img')) {
         app()->download(g('img'), false); // not as attachment (false)

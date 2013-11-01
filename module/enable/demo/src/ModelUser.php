@@ -26,7 +26,7 @@ class ModelUser
         if ($this->validateCreate($data)) {
             
             $email = $data['email'];
-            $view = new \Arch\View(BASE_PATH.'/theme/demo/email_template.php');
+            $view = new \Arch\View(THEME_PATH.'/demo/email_template.php');
             $view->addContent("Thank you $email for registering!");
 
             $r = $this->mail($email, 'Register', $view);
@@ -207,10 +207,7 @@ class ModelUser
      * @return boolean
      */
     public function mail($to, $subject, $view)
-    {
-        require_once implode(DIRECTORY_SEPARATOR,
-                array(BASE_PATH,'vendor','phpmailer','class.phpmailer.php'));
-        
+    {   
         try {
             $mail = new \PHPMailer(true); // defaults to using php "mail()"
             $mail->CharSet = 'UTF-8';
@@ -241,7 +238,7 @@ class ModelUser
     {
         if (!q('demo_user')->execute('select 1 from demo_user', null, '')) {
             if ($install) {
-                $filename = BASE_PATH.'/module/enable/demo/db/install.sql';
+                $filename = MODULE_PATH.'/enable/demo/db/install.sql';
                 q('demo_user')->install($filename);
             }
         }

@@ -5,7 +5,7 @@ class ViewRegister extends \Arch\View
 {
     public function __construct()
     {
-        parent::__construct(BASE_PATH.'/theme/demo/register_form.php');
+        parent::__construct(THEME_PATH.'/demo/register_form.php');
 
         // set data
         $this->set('registerUrl', '/register');

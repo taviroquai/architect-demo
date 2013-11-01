@@ -5,7 +5,7 @@ class ViewNavLogin extends \Arch\View
 {
     public function __construct()
     {
-        parent::__construct(BASE_PATH.'/theme/demo/login_navform.php');
+        parent::__construct(THEME_PATH.'/demo/login_navform.php');
 
         $login = app()->session->login;
         if (empty($login)) {
@@ -13,7 +13,7 @@ class ViewNavLogin extends \Arch\View
         }
         else {
             // set session and logout template
-            $this->path = BASE_PATH.'/theme/demo/login_navsession.php';
+            $this->path = THEME_PATH.'/demo/login_navsession.php';
 
             // set default data
             $this->set('logoutUrl', app()->url('/logout'));
