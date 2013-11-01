@@ -1,3 +1,5 @@
 /nbproject/
 /log/log.txt
 /theme/data/
+/vendor/
+/composer.lock
