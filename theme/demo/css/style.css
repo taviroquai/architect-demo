@@ -13,8 +13,8 @@ pre {
 }
 
 .gallery .item {
-    width: 102px;
-    height: 102px;
+    width: 60px;
+    height: 60px;
     text-align: center;
     overflow: hidden;
 }

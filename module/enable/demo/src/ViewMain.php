@@ -95,9 +95,12 @@ class ViewMain extends \Arch\View
         
         // demo of the file gallery
         $tmpl = ARCH_PATH.'/theme/architect/filegallery.php';
-        $explorer = app()->createFileExplorer(THEME_PATH.'/demo/img', $tmpl);
+        $explorer = app()->createFileExplorer(THEME_PATH.'/data/thumb', $tmpl);
         $explorer->set('url', '/demo');
         $explorer->set('param', 'gal'); // $_GET['gal'] = $path
+        $explorer->setPathToUrl(function($path) {
+            return BASE_URL.'/'.INDEX_FILE.'/demo?img='.$path;
+        });
         $this->addContent($explorer);
         unset($tmpl);
         unset($explorer);
