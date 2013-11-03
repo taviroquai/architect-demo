@@ -1,5 +1,11 @@
 <?php
 
+r('/demo/crud', function() {
+    
+    c(BASE_URL.'/theme/demo/crud.js', 'js');
+    c(v(__DIR__.'/theme/template.php'));
+});
+
 r('/demo/crud/user/(:num)/edit', function($id) {
     $user = q('demo_user')->s()->w('id = ? ', array($id))->fetchObject();
     $data = array('user' => $user);

@@ -22,3 +22,10 @@ pre {
 .gallery .thumb {
     margin: 0 auto;
 }
+
+.editor {
+    overflow:auto;
+    padding: 10px;
+    line-height: 150%;
+    border: 1px dashed gray;
+}

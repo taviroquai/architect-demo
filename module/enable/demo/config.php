@@ -1,5 +1,12 @@
 <?php
 
+// add demo stylesheet; use before theme render event
+e('arch.theme.after.load', function() {
+    c(BASE_URL.'/theme/demo/css/style.css', 'css');
+    $path = app()->createBreadcrumbs()->parseAction(app()->input->getAction());
+    c($path);
+});
+        
 // add main route
 r('/', function() {
 	// add content
@@ -14,40 +21,29 @@ r('/404', function()  {
 
 r('/demo', function() {
     
-    // demo of file upload
-    if ($file = f(0)) {
-        app()->upload($file, THEME_PATH.'/data');
-    }
+    $links = array(
+        array('title' => 'Attachment', 'href' => u('/demo/attachment')),
+        array('title' => 'Breadcrumbs', 'href' => u('/demo/breadcrumbs')),
+        array('title' => 'Carousel', 'href' => u('/demo/carousel')),
+        array('title' => 'Shopping Cart', 'href' => u('/demo/cart')),
+        array('title' => 'Comment Form', 'href' => u('/demo/commentform')),
+        array('title' => 'Crud (JS)', 'href' => u('/demo/crud')),
+        array('title' => 'Datepicker', 'href' => u('/demo/datepicker')),
+        array('title' => 'File Explorer', 'href' => u('/demo/fileexplorer')),
+        array('title' => 'File Gallery', 'href' => u('/demo/filegallery')),
+        array('title' => 'File Upload', 'href' => u('/demo/fileupload')),
+        array('title' => 'Forum', 'href' => u('/demo/forum')),
+        array('title' => 'Hello World', 'href' => u('/hello')),
+        array('title' => 'Line Chart', 'href' => u('/demo/linechart')),
+        array('title' => 'Map', 'href' => u('/demo/map')),
+        array('title' => 'Pagination', 'href' => u('/demo/pagination')),
+        array('title' => 'Poll', 'href' => u('/demo/poll')),
+        array('title' => 'Text Editor', 'href' => u('/demo/texteditor')),
+        array('title' => 'Tree View', 'href' => u('/demo/treeview')),
+        array('title' => 'User', 'href' => u('/user/register'))
+    );
     
-    // demo of download file
-    if (g('dl')) {
-        app()->download(THEME_PATH.'/default/img/'.g('dl'));
-    }
-    if (g('img')) {
-        app()->download(g('img'), false); // not as attachment (false)
-    }
-    
-    // demo of forum posts
-    $forum_model = new \Arch\Demo\ModelForum();
-    if (p('topic')) {
-        $forum_model->addTopic(p());
-        app()->redirect(u('/demo'));
-    }
-    if (p('post')) {
-        $forum_model->addPost(p());
-        app()->redirect(u('/demo'));
-    }
-    
-    // show demo view
-    c(new \Arch\Demo\ViewMain());
+    $view = app()->createView(__DIR__.'/theme/template.php');
+    $view->set('links', $links);
+    c($view);
 });
-
-r('/demo/install', function() {
-    // initialization
-    \Arch\Demo\ModelUser::checkDatabase();
-});
-
-// add more routes
-require_once __DIR__.'/register.php';
-require_once __DIR__.'/login.php';
-require_once __DIR__.'/crud.php';

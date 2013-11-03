@@ -8,21 +8,25 @@ define('MAIL_FROMNAME',     'Application Name');
 define('MAIL_REPLY',        'taviroquai@hotmail.com');
 define('MAIL_REPLYNAME',    'Application Name');
 
+r('/user/install', function() {
+    // initialization
+    \Arch\Demo\ModelUser::checkDatabase();
+});
+
 // add routes
-r('/register', function() {
+r('/user/register', function() {
     // trigger before view
     tr('register.form.before.view');
     // add view to content
     $view = new \Arch\Demo\ViewRegister();
-    $view->set('registerUrl', u('/register'));
+    $view->set('registerUrl', u('/user/register'));
     c($view);
 });
 
 // add routes
-r('/register-success', function() {
+r('/user/register-success', function() {
     c('<p>Thank you for registering</p>');
 });
-
 
 // add event save post
 e('register.form.before.view', function() {
@@ -37,9 +41,11 @@ e('register.form.before.view', function() {
             // trigger after post
             tr('register.form.after.post', $user);
             // redirect to success page
-            app()->redirect(u('/register-success'));
+            app()->redirect(u('/user/register-success'));
         } else {
             sleep(2);
         }
     }
 });
+
+require_once __DIR__.'/login.php';
