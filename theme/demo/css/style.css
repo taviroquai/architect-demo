@@ -56,6 +56,10 @@ input[type="color"],
     height: 30px;
 }
 
+textarea {
+    height: auto !important;
+}
+
 ul {
     list-style-type: none;
 }
