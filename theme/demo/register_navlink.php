@@ -1,3 +1,3 @@
 <ul class="nav pull-right">
-	<li><a href="<?=app()->url('/register')?>">Register!</a></li>
+	<li><a href="<?=app()->url('/user/register')?>">Register!</a></li>
 </ul>
