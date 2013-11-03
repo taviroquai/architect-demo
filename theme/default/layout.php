@@ -56,10 +56,10 @@
 
     <div class="container">
 
-      <?php app()->showMessages(function($item) { ?>
-      <div class="<?=$item->cssClass?>"><?=$item->text?></div>
-      <?}, true)?>
+      <!-- Add flash messages -->
+      <?=$messages?>
       
+      <!-- Add content items -->
       <?php $this->slot('content', function($item) { ?>
         <div><?=$item?></div>
       <?})?>

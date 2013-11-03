@@ -27,12 +27,9 @@ e('login.form.before.view', function() {
         $model = new \Arch\Demo\ModelUser();
         $user = $model->login(p('email'), p('password'));
         
-        if ($user) {
-            // start user session
-            app()->session->login = $user->email;
-            // trigger after login
-            tr('login.form.after.post', $user);
-            app()->redirect();
-        }
+        if ($user) app()->session->login = $user->email;
+        
+        // redirect to clean post
+        app()->redirect();
     }
 });
