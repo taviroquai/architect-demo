@@ -6,6 +6,105 @@
         Demo module stylesheet
 */
 
+body {
+    background-image:url('../img/fresh_snow.png');
+    background-attachment: fixed;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+input, button, select, textarea {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.navbar .navbar-inner, .breadcrumb, .well, .hero-unit {
+    background-image: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .navbar-inner, .well, .hero-unit {
+    background-color: white !important;
+}
+
+.hero-unit, .well, .breadcrumb {
+    border-radius: 0;
+}
+
+.btn, .brand, li {
+    line-height: 30px;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+    line-height: 30px;
+    height: 30px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.muted {
+  color: #999999;
+}
+
+a.muted:hover,
+a.muted:focus {
+  color: #808080;
+}
+
+.text-warning {
+  color: #c09853;
+}
+
+a.text-warning:hover,
+a.text-warning:focus {
+  color: #a47e3c;
+}
+
+.text-error {
+  color: #b94a48;
+}
+
+a.text-error:hover,
+a.text-error:focus {
+  color: #953b39;
+}
+
+.text-info {
+  color: #3a87ad;
+}
+
+a.text-info:hover,
+a.text-info:focus {
+  color: #2d6987;
+}
+
+.text-success {
+  color: #468847;
+}
+
+a.text-success:hover,
+a.text-success:focus {
+  color: #356635;
+}
+
 pre {
     background-color: #3f3f3f;
     color: white;
@@ -28,4 +127,18 @@ pre {
     padding: 10px;
     line-height: 150%;
     border: 1px dashed gray;
+}
+
+#demos-list ul {
+    margin: 0;
+    padding: 0;
+}
+
+#demos-list li {
+    display: inline;
+}
+
+#demos-list a div {
+    border-color: #e0e0e0;
+    margin-left: 0;
 }

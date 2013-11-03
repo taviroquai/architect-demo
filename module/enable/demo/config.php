@@ -36,15 +36,17 @@ r('/demo', function() {
         array('title' => 'Forum', 'href' => u('/demo/forum')),
         array('title' => 'Hello World', 'href' => u('/hello')),
         array('title' => 'Line Chart', 'href' => u('/demo/linechart')),
+        array('title' => 'Login Form', 'href' => u('/login')),
         array('title' => 'Map', 'href' => u('/demo/map')),
         array('title' => 'Pagination', 'href' => u('/demo/pagination')),
         array('title' => 'Poll', 'href' => u('/demo/poll')),
+        array('title' => 'Register Form', 'href' => u('/user/register')),
         array('title' => 'Text Editor', 'href' => u('/demo/texteditor')),
-        array('title' => 'Tree View', 'href' => u('/demo/treeview')),
-        array('title' => 'User', 'href' => u('/user/register'))
+        array('title' => 'Tree View', 'href' => u('/demo/treeview'))
     );
     
     $view = app()->createView(__DIR__.'/theme/template.php');
+    $view->id = 'demos-list';
     $view->set('links', $links);
     c($view);
 });

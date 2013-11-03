@@ -6,7 +6,7 @@ class ViewLogin extends \Arch\View
 {
     public function __construct()
     {
-        parent::__construct(THEME_PATH.'/demo/login_form.php');
+        parent::__construct(__DIR__.'/../theme/login_form.php');
         
         $login = app()->session->login;
         if (empty($login)) {
@@ -17,7 +17,7 @@ class ViewLogin extends \Arch\View
             }
         } else {
             // set session and logout template
-            $this->setTemplate(THEME_PATH.'/demo/login_session.php');
+            $this->setTemplate(__DIR__.'/../theme/login_session.php');
             // set default data
             $this->set('logoutUrl', app()->url('/logout'));
             $model = new \Arch\Demo\ModelUser();
