@@ -8,18 +8,17 @@ development.
 Online Demo
 -----------
 
-An online demo can be found in <http://marcoafonso.pt/tests/architect/>
+An online demo can be found in <http://marcoafonso.pt/tests/architect/index.php/>
 
 Install
 -------
 
-1. Download Architect from <https://github.com/taviroquai/architect/archive/master.zip>
-2. Extract to Apache folder /var/www/architect
-3. Download this demo from <https://github.com/taviroquai/architect-demo/archive/master.zip>
-4. Extract to Apache folder /var/www/architect-demo
-5. Edit config/development.xml (this demo uses a mysql database)
-6. Open in browser <http://localhost/architect-demo/index.php/demo/install>
-7. Open in browser <http://localhost/architect-demo/>
+1. Download this demo from <https://github.com/taviroquai/architect-demo/archive/master.zip>
+2. Extract to Apache folder /var/www/architect-demo
+3. Install dependencies with composer
+4. Edit config/development.xml (this demo uses a mysql database)
+5. Open in browser <http://localhost/architect-demo/index.php/user/install>
+6. Open in browser <http://localhost/architect-demo/index.php/>
 
 Framework Documentation
 -------------
