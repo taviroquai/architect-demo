@@ -6,6 +6,16 @@
         Demo module stylesheet
 */
 
+@font-face
+{
+    font-family: Quicksand;
+    src: url('Quicksand_Book.otf'),
+        url('Quicksand_Book.ttf'),
+        url('Quicksand_Book.woff'),
+        url('Quicksand_Book.svg'),
+        url('Quicksand_Book.eot'); /* IE9 */
+}
+
 body {
     background-image:url('../img/fresh_snow.png');
     background-attachment: fixed;

@@ -7,7 +7,7 @@
     <meta name="description" 
           content="<?=empty($description) ? '' : $description?>">
     <meta name="author" content="<?=empty($author) ? '' : $author?>">
-
+    
     <!-- Le styles -->
     <?php $this->slot('css', function($item) { ?>
     <link href="<?=$item?>" rel="stylesheet" />
