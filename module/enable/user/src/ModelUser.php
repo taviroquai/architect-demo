@@ -254,7 +254,7 @@ class ModelUser
     {
         if (!q('demo_user')->execute('select 1 from demo_user', null, '')) {
             if ($install) {
-                $filename = MODULE_PATH.'/enable/demo/db/install.sql';
+                $filename = MODULE_PATH.'/enable/user/db/install.sql';
                 q('demo_user')->install($filename);
             }
         }
