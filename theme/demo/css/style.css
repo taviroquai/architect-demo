@@ -70,6 +70,10 @@ textarea {
     height: auto !important;
 }
 
+.carousel-control {
+    line-height: 40px;
+}
+
 ul {
     list-style-type: none;
 }

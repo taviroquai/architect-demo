@@ -1,5 +1,5 @@
 <div class="well">
-    <h1>Line Chart Demo</h1>
+    <h1>Tree View Demo</h1>
     <?php $this->slot('content', function($item) { ?>
         <div>
             <?=$item?>

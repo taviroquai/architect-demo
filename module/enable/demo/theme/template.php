@@ -12,3 +12,13 @@
     </ul>
     <div class="clearfix"></div>
 </div>
+<script type="text/javascript">
+    jQuery(function($) {
+        $('#demos-list li div').on('mouseenter', function() {
+            $(this).addClass('animated flash');
+        });
+        $('#demos-list li div').on('mouseleave', function() {
+            $(this).removeClass('animated flash');
+        });
+    });
+</script>

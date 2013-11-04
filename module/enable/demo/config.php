@@ -29,7 +29,7 @@ r('/demo', function() {
         array('title' => 'Shopping Cart', 'href' => u('/demo/cart')),
         array('title' => 'Comment Form', 'href' => u('/demo/commentform')),
         array('title' => 'Crud (JS)', 'href' => u('/demo/crud')),
-        array('title' => 'Datepicker', 'href' => u('/demo/datepicker')),
+        array('title' => 'Date Picker', 'href' => u('/demo/datepicker')),
         array('title' => 'File Explorer', 'href' => u('/demo/fileexplorer')),
         array('title' => 'File Gallery', 'href' => u('/demo/filegallery')),
         array('title' => 'File Upload', 'href' => u('/demo/fileupload')),

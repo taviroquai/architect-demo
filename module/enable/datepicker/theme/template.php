@@ -1,5 +1,5 @@
 <div class="well">
-    <h1>Datepicker Demo</h1>
+    <h1>Date Picker Demo</h1>
     <?php $this->slot('content', function($item) { ?>
         <div>
             <?=$item?>
@@ -9,7 +9,7 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$datepicker = app()->createDatepicker()
+$datepicker = app()->createDatePicker()
     ->set('default', date('Y/m/d', time() + 60*60*24));
         </pre>
         <h4>Default Template</h4>

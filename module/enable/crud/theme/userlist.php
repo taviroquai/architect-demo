@@ -1,4 +1,4 @@
-<table class="table" style="max-width: 240px">
+<table class="table span4" style="margin-left: 0">
     <thead>
         <tr>
             <th><i class="icon-user"></i></th>

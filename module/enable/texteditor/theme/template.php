@@ -9,7 +9,7 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$editor = app()->createTexteditor();
+$editor = app()->createTextEditor();
         </pre>
         <h4>Default Template</h4>
         <pre>/theme/architect/texteditor.php</pre>
