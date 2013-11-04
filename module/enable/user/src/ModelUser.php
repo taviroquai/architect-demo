@@ -53,6 +53,8 @@ class ModelUser
      */
     public function login($email, $password) {
         
+        $user = false;
+        
         $validator = app()->createValidator();
         $rule = $validator->createRule('email')
                 ->setErrorMessage('Invalid email address')

@@ -10,7 +10,7 @@ class ViewNavLogin extends \Arch\View
         $login = app()->session->login;
         
         if (empty($login)) {
-            $this->set('loginUrl', app()->url('/login'));
+            $this->set('loginUrl', app()->url('/login/post'));
         }
         else {
             // set session and logout template
