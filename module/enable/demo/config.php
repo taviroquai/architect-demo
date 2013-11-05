@@ -11,7 +11,9 @@ e('arch.theme.after.load', function() {
 // add main route
 r('/', function() {
 	// add content
-    c(new \Arch\View(THEME_PATH.'/demo/default.php'));
+    $v = new \Arch\View(THEME_PATH.'/demo/default.php');
+    $v->set('idiom', app()->createIdiom());
+    c($v);
 });
 
 // add 404 route

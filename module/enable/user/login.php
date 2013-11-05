@@ -26,7 +26,10 @@ r('/login/post', function() {
     $user = $model->login(p('email'), p('password'));
 
     if ($user) app()->session->login = $user->email;
-    else app()->redirect (u('/login'));
+    else {
+        app()->session->last_post = p();
+        app()->redirect (u('/login'));
+    }
 
     // redirect to clean post
     app()->redirect();
