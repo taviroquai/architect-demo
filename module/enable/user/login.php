@@ -4,7 +4,7 @@
 r('/login', function() {
     
     // add view to content
-    $view = new \Arch\Demo\ViewLogin();
+    $view = new \Demo\ViewLogin();
     $view->set('loginUrl', app()->url('/login/post'));
     $view->set('logoutUrl', app()->url('/logout'));
     c($view);
@@ -22,7 +22,7 @@ r('/logout', function() {
 r('/login/post', function() {
     
     // login user
-    $model = new \Arch\Demo\ModelUser();
+    $model = new \Demo\ModelUser();
     $user = $model->login(p('email'), p('password'));
 
     if ($user) app()->session->login = $user->email;

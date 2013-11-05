@@ -9,7 +9,8 @@
     <item name="THEME_PATH">/var/www/architectphp-demo/theme</item>
     <item name="MODULE_PATH">/var/www/architectphp-demo/module</item>
     <item name="IDIOM_PATH">/var/www/architectphp-demo/idiom</item>
-    <item name="LOG_PATH">/var/www/architectphp-demo/log</item>
+    <item name="CACHE_PATH">/var/www/architectphp-demo/cache</item>
+    <item name="LOG_FILE">/var/www/architectphp-demo/log/log.tx</item>
     <item name="BASE_URL">/architectphp-demo</item>
     <!-- empty INDEX_FILE if you use URL rewrite -->
     <item name="INDEX_FILE">index.php</item>

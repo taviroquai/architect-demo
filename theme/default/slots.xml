@@ -1,13 +1,13 @@
 <config>
     <slot name="topbar">
         <module>
-            <classname>\Arch\Demo\ViewNavMenu</classname>
+            <classname>\Demo\ViewNavMenu</classname>
         </module>
         <module>
-            <classname>\Arch\Demo\ViewNavRegister</classname>
+            <classname>\Demo\ViewNavRegister</classname>
         </module>
         <module>
-            <classname>\Arch\Demo\ViewNavLogin</classname>
+            <classname>\Demo\ViewNavLogin</classname>
         </module>
         <module>
             <classname>\Arch\View</classname>

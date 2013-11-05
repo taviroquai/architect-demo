@@ -2,7 +2,7 @@
 
 r('/demo/forum', function() {
     
-    $forum_model = new \Arch\Demo\ModelForum();
+    $forum_model = new \Demo\ModelForum();
     $forum = app()->createForum();
     $forum->set('url', '/demo/forum');
     $forum->set('categories', $forum_model->getCategories());
@@ -13,7 +13,7 @@ r('/demo/forum', function() {
 
 r('/demo/forum/(:any)', function($alias = 1) {
     
-    $forum_model = new \Arch\Demo\ModelForum();
+    $forum_model = new \Demo\ModelForum();
     if (p('topic')) {
         $forum_model->addTopic(p());
         app()->redirect(u('/demo/forum/'.$alias));
@@ -32,7 +32,7 @@ r('/demo/forum/(:any)', function($alias = 1) {
 
 r('/demo/forum/(:any)/(:any)', function($falias, $alias) {
     
-    $forum_model = new \Arch\Demo\ModelForum();
+    $forum_model = new \Demo\ModelForum();
     if (p('post')) {
         $forum_model->addPost(p());
         app()->redirect(u('/demo/forum/'.$falias.'/'.$alias));

@@ -12,7 +12,7 @@ r('/user/register', function() {
     // trigger before view
     tr('register.form.before.view');
     // add view to content
-    $view = new \Arch\Demo\ViewRegister();
+    $view = new \Demo\ViewRegister();
     $view->set('registerUrl', u('/user/register'));
     c($view);
 });
@@ -28,7 +28,7 @@ e('register.form.before.view', function() {
     if (p('register') && app()->getCaptcha()) {
 
         // load model
-        $model = new \Arch\Demo\ModelUser();
+        $model = new \Demo\ModelUser();
         $user = $model->register(p());
         
         // what to do?

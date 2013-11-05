@@ -1,6 +1,6 @@
 <?php
 
-namespace Arch\Demo;
+namespace Demo;
 
 /**
  * User model
