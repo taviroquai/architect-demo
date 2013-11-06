@@ -15,7 +15,6 @@ class ViewLogin extends \Arch\View
             if (isset($post['email'])) {
                 $this->set('email', filter_var($post['email']));
                 unset(app()->session->last_post);
-                var_dump(app()->session);
             }
         } else {
             // set session and logout template
