@@ -23,4 +23,10 @@ app()->addRoute('/hello', function() {
   <h2>Documentation</h2>
   The documentation is in development. Take a look in 
   <a href="https://github.com/taviroquai/architect" title="Architect">GitHub</a>.
+  
+  <h2>Credits</h2>
+  <p>Twitter Boostrap, jQuery, Quicksand font by Andrew Paglinawan, 
+      Thiago de Arruda Datetime Picker, Jasny FileUpload (Jasny), 
+      Morris JS, Raphael JS, Google Maps, Leaflet JS, MindMup Wysiwyg and 
+      finally, PHP Composer/Packagist and Architect PHP Framework</p>
 </div>

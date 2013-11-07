@@ -129,6 +129,10 @@ pre {
     font-weight: bold;
 }
 
+.brand img {
+    max-height: 30px;
+}
+
 .gallery .item {
     width: 60px;
     height: 60px;

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter - Architect PHP Framework</title>
+    <title>Architect PHP Framework - Theme from Twitter Bootstrap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" 
           content="<?=empty($description) ? '' : $description?>">
@@ -44,7 +44,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="<?=app()->url('/')?>">
-            <?=$idiom->t('TITLE')?>
+              <img src="<?=BASE_URL?>/theme/default/img/arch_logo.png" />
           </a>
           
           <div class="nav-collapse collapse">
@@ -69,7 +69,7 @@
       <hr>
 
       <footer>
-        <p>Architect PHP Framework &copy; Marco Afonso 2013</p>
+          <p>Copyright 2013 &copy; Marco Afonso</p>
       </footer>
 
     </div> <!-- /container -->
