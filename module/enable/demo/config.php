@@ -14,6 +14,7 @@ r('/', function() {
     $v = new \Arch\View(THEME_PATH.'/demo/default.php');
     $v->set('idiom', app()->createIdiom());
     c($v);
+    app()->output->cache(app()->input->genCacheKey(), app()->theme);
 });
 
 // add 404 route
