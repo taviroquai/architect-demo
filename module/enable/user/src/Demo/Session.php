@@ -13,7 +13,7 @@ class Session extends \Arch\Session
         parent::__construct();
     }
     
-    public function load(&$data = array())
+    public function load($data = array())
     {
         session_start();
         parent::load($_SESSION);

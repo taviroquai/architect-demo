@@ -29,21 +29,23 @@ class ModelUser
             $view = new \Arch\View(THEME_PATH.'/demo/email_template.php');
             $view->addContent("Thank you $email for registering!");
 
-            $r = $this->mail($email, 'Register', $view);
-            if(!$r) {
+            $email_result = $this->mail($email, 'Register', $view);
+            if(!$email_result) {
                 m("Registration failed. Try again.", 'alert alert-error');
             }
             else {
-                m("An email was sent to your address");
                 // finally register
                 $user = $this->import($this->create(), $data);
                 $user->password = s($user->password);
-                $this->save($user);
-                return $user;
+                if ($this->save($user)) {
+                    m("An email was sent to your address");
+                    return $user;
+                } else {
+                    m("Could not complete registration. Please ignore any email", 'alert alert-error');
+                }
             }
-        } else {
-            return false;
-        }
+        } 
+        return false;
     }
     
     /**
@@ -258,7 +260,11 @@ class ModelUser
         if (!q('demo_user')->execute('select 1 from demo_user', null, '')) {
             if ($install) {
                 $filename = MODULE_PATH.'/enable/user/db/install.sql';
-                q('demo_user')->install($filename);
+                $r = q('demo_user')->install($filename);
+                if (!$r) {
+                    app()->log($e->getMessage(), 'error');
+                    app()->redirect(\Arch\App::Instance()->url('/404'));
+                }
             }
         }
     }
