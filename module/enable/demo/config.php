@@ -1,12 +1,4 @@
 <?php
-
-// add demo stylesheet; use before theme render event
-e('arch.theme.after.load', function() {
-    c(BASE_URL.'/theme/default/css/animate-custom.css', 'css');
-    c(BASE_URL.'/theme/demo/css/style.css', 'css');
-    $path = app()->createBreadcrumbs()->parseAction(app()->input->getAction());
-    c($path);
-});
         
 // add main route
 r('/', function() {
@@ -16,12 +8,7 @@ r('/', function() {
     c($v);
 });
 
-// add 404 route
-r('/404', function()  {
-   	// set content
-    c('<h1>404</h1>');
-});
-
+// add demo route
 r('/demo', function() {
     
     $links = array(
@@ -51,4 +38,22 @@ r('/demo', function() {
     $view->id = 'demos-list';
     $view->set('links', $links);
     c($view);
+});
+
+// manually add session start
+e('arch.session.before.load', function () {
+    ini_set('session.gc_probability', 0);
+    @session_start();
+});
+
+e('arch.session.after.save', function () {
+    @session_write_close();
+});
+
+// add demo stylesheet; use before theme render event
+e('arch.theme.after.load', function() {
+    c(BASE_URL.'/theme/default/css/animate-custom.css', 'css');
+    c(BASE_URL.'/theme/demo/css/style.css', 'css');
+    $path = app()->createBreadcrumbs()->parseAction(app()->input->getAction());
+    c($path);
 });

@@ -14,7 +14,8 @@ r('/login', function() {
 r('/logout', function() {
     
     // destroy current session and redirect
-    app()->session->destroy();
+    session_destroy();
+    app()->session->reset();
     app()->redirect();
 });
 

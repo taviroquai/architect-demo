@@ -62,8 +62,8 @@ class ModelUser
                 ->setErrorMessage('Invalid email address')
                 ->setAction('isEmail');
         $validator->addRule($rule);
-
-        if ($validator->validate()->getResult()) {
+        $result = $validator->validate()->getResult();
+        if ($result) {
             $email      = filter_var($email);
             $password   = s(filter_var($password));
             $user = $this->findOne(
