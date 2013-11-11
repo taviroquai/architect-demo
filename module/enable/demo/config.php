@@ -54,6 +54,6 @@ e('arch.session.after.save', function () {
 e('arch.theme.after.load', function() {
     c(BASE_URL.'/theme/default/css/animate-custom.css', 'css');
     c(BASE_URL.'/theme/demo/css/style.css', 'css');
-    $path = app()->createBreadcrumbs()->parseAction(app()->input->getAction());
+    $path = app()->createBreadcrumbs();
     c($path);
 });
