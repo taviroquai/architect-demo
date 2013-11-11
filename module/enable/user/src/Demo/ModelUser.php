@@ -63,6 +63,7 @@ class ModelUser
                 ->setAction('isEmail');
         $validator->addRule($rule);
         $result = $validator->validate()->getResult();
+        app()->session->loadMessages($validator->getMessages());
         if ($result) {
             $email      = filter_var($email);
             $password   = s(filter_var($password));
@@ -126,10 +127,12 @@ class ModelUser
         $rule = $validator->createRule('password')
                 ->setErrorMessage('Password does not match')
                 ->setAction('equals')
-                ->addParam('password_confirm');
+                ->addParam(p('password_confirm'));
         $validator->addRule($rule);
 
-        return $validator->validate()->getResult();
+        $result = $validator->validate()->getResult();
+        app()->session->loadMessages($validator->getMessages());
+        return $result;
     }
     
     /**
