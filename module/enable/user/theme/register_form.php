@@ -10,7 +10,7 @@
         <input name="password_confirm" type="password" 
                placeholder="Confirm password" /><br />
         <input type="hidden" name="register" value="1" />
-        <button>Register</button>
+        <button class="btn">Register</button>
 
         <!-- add captcha -->
         <?=app()->createCaptcha()?>
