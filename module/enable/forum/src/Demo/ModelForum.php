@@ -15,25 +15,17 @@ class ModelForum
 
     public function addTopic($data)
     {
-        $topic = $data;
-        $topic['alias'] = app()->createSlug($data['title']);
-        $topic['id_user'] = 1;
-        $topic['datetime'] = date('Y-m-d H:i:s');
-        unset($topic['body']);
-        unset($topic['topic']);
-        $data['id_topic'] = q('demo_topic')->i($topic)->getInsertId();
-        $this->addPost($data);
-        return $data['id_topic'];
+        $data['alias']      = app()->slug($data['title']);
+        $data['id_user']    = 1;
+        $data['datetime']   = date('Y-m-d H:i:s');
+        return q('demo_topic')->i($data)->getInsertId();
     }
     
     public function addPost($data)
     {
-        $post = array();
-        $post['datetime'] = date('Y-m-d H:i:s');
-        $post['id_user'] = 1;
-        $post['id_topic'] = $data['id_topic'];
-        $post['body'] = $data['body'];
-        return q('demo_post')->i($post)->getInsertId();
+        $data['datetime']   = date('Y-m-d H:i:s');
+        $data['id_user']    = 1;
+        return q('demo_post')->i($data)->getInsertId();
     }
     
     public function getForum($id)

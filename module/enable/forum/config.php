@@ -15,7 +15,10 @@ r('/demo/forum/(:any)', function($alias = 1) {
     
     $forum_model = new \Demo\ModelForum();
     if (p('topic')) {
-        $forum_model->addTopic(p());
+        $topic_data = p('topic');
+        $post_data = p('post');
+        $post_data['id_topic'] = $forum_model->addTopic($topic_data);
+        $forum_model->addPost($post_data);
         app()->redirect(u('/demo/forum/'.$alias));
     }
     
@@ -34,7 +37,7 @@ r('/demo/forum/(:any)/(:any)', function($falias, $alias) {
     
     $forum_model = new \Demo\ModelForum();
     if (p('post')) {
-        $forum_model->addPost(p());
+        $forum_model->addPost(p('post'));
         app()->redirect(u('/demo/forum/'.$falias.'/'.$alias));
     }
     
