@@ -15,9 +15,8 @@ r('/demo', function() {
         array('title' => 'Attachment', 'href' => u('/demo/attachment')),
         array('title' => 'Breadcrumbs', 'href' => u('/demo/breadcrumbs')),
         array('title' => 'Carousel', 'href' => u('/demo/carousel')),
-        array('title' => 'Shopping Cart', 'href' => u('/demo/cart')),
         array('title' => 'Comment Form', 'href' => u('/demo/commentform')),
-        array('title' => 'Crud (JS)', 'href' => u('/demo/crud')),
+        array('title' => 'Crud - Auto Table / Form', 'href' => u('/demo/crud')),
         array('title' => 'Date Picker', 'href' => u('/demo/datepicker')),
         array('title' => 'File Explorer', 'href' => u('/demo/fileexplorer')),
         array('title' => 'File Gallery', 'href' => u('/demo/filegallery')),
@@ -30,6 +29,7 @@ r('/demo', function() {
         array('title' => 'Pagination', 'href' => u('/demo/pagination')),
         array('title' => 'Poll', 'href' => u('/demo/poll')),
         array('title' => 'Register Form', 'href' => u('/user/register')),
+        array('title' => 'Shopping Cart', 'href' => u('/demo/cart')),
         array('title' => 'Text Editor', 'href' => u('/demo/texteditor')),
         array('title' => 'Tree View', 'href' => u('/demo/treeview'))
     );

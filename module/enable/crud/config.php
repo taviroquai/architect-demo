@@ -2,61 +2,90 @@
 
 r('/demo/crud', function() {
     
-    c(BASE_URL.'/theme/demo/crud.js', 'js');
-    c(v(__DIR__.'/theme/template.php'));
+    $config = array(
+        'table'     => 'demo_user',
+        'select'    => 'demo_user.*',
+        'columns'       => array(
+            array('type' => 'value', 'label' => 'ID', 'property'  => 'id'),
+            array('type' => 'value', 'label' => 'Email', 'property'  => 'email'),
+            array('type' => 'action',   'icon'  => 'icon-edit', 
+                'action' => u('/demo/crud/'), 'property' => 'id'),
+            array('type' => 'action',   'icon'  => 'icon-trash', 
+                'action' => u('/demo/crud/del/'), 'property' => 'id')
+        )
+    );
+    $panel = app()->createAutoTable($config);
+
+    $v = v(__DIR__.'/theme/tablepanel.php');
+    $v->addContent('<a class="btn" href="'.u('/demo/crud/0'.'">New</a>'));
+    $v->addContent($panel);
+    c($v);
 });
 
-r('/demo/crud/user/(:num)/edit', function($id) {
-    $user = q('demo_user')->s()->w('id = ? ', array($id))->fetchObject();
-    $data = array('user' => $user);
-    $v = new \Arch\View(MODULE_PATH.'/enable/crud/theme/userform.php', $data);
-    o($v);
+r('/demo/crud/(:num)', function($id = 0) {
+    
+    $config = array(
+        'table'     => 'demo_user',
+        'select'    => 'demo_user.*',
+        'action'    => u('/demo/crud/save'),
+        'items'     => array(
+            array('type' => 'hidden',   'property'  => 'id'),
+            array('type' => 'label',    'label' => 'Email'),
+            array('type' => 'text',     'property'  => 'email'),
+            array('type' => 'label',    'label' => 'Password'),
+            array('type' => 'password', 'property'  => 'password'),
+            array('type' => 'label',    'label' => 'Groups'),
+            array('type' => 'checklist','property'  => 'id_group', 
+                'class' => 'checklist inline',
+                'items_table' => 'demo_group', 'prop_label' => 'name',
+                'selected_items_table' => 'demo_usergrou'),
+            array('type' => 'breakline'),
+            array('type' => 'submit',   'label' => 'Save', 
+                'class' => 'btn btn-success inline'),
+            array('type' => 'button',   'label' => 'Cancel', 'action' => '#',
+                'class' => 'btn inline', 'onclick' => 'window.history.back()'),
+            array('type' => 'button',   'label' => 'Delete', 'property' => 'id',
+                'class' => 'btn btn-danger', 'action' => u('/demo/crud/del/'))
+        )
+    );
+    if ($id) $config['record_id'] = $id;
+    $panel = app()->createAutoForm($config);
+
+    $v = v(__DIR__.'/theme/formpanel.php');
+    $v->addContent($panel);
+    c($v);
 });
 
-r('/demo/crud/user/list', function() {
-    $data = array('users' => q('demo_user')->s()->fetchAll());
-    $v = new \Arch\View(MODULE_PATH.'/enable/crud/theme/userlist.php', $data);
-    o($v);
-});
-
-r('/demo/crud/user/(:num)/group/list', function($id) {
-    $groups = q('demo_group')->s()->fetchAll();
-    $selected = q('demo_usergroup')
-        ->s('id_group')
-        ->w('id_user = ?', array($id))
-        ->fetchColumn();
-    $data = array('groups' => $groups, 'selected' => $selected);
-    $v = new \Arch\View(MODULE_PATH.'/enable/crud/theme/grouplist.php', $data);
-    o($v);
-});
-
-r('/demo/crud/user/save', function() {
-    $result = array('result' => true, 'id' => null);
+r('/demo/crud/save', function() {
+    
+    // save groups
+    q('demo_usergroup')->d('id_user = ?', array(p('id')))->run();
+    foreach (p('id_group') as $id => $v) {
+        $data = array('id_user' => p('id'), 'id_group' => $id);
+        q('demo_usergroup')->i($data)->getInsertId();
+    }
+    
+    // save user
     $data = array('email' => p('email'));
     if (p('password') != '') $data['password'] = s(p('password'));
     if (p('id') > 0) {
-        q('demo_user')->u($data)->w('id = ? ', array(p('id')))->run();
-        $result['id'] = p('id');
+        q('demo_user')->u($data)->w('id = ? ', array(p('id')))->getRowCount();
     }
     else {
-        $result['id'] = q('demo_user')->i($data)->getInsertId();
-    }    
-    j($result);
-});
-
-r('/demo/crud/user/(:num)/delete', function($id) {
-    $result = array('result' => true, 'id' => $id);
-    q('demo_usergroup')->d('id_user = ?', array($id))->run();
-    q('demo_user')->d('id = ? ', array($id))->run();
-    j($result);
-});
-
-r('/demo/crud/user/save/group', function() {
-    q('demo_usergroup')->d('id_user = ?', array(p('id_user')))->run();
-    $groups = p('id_group');
-    foreach ($groups as $id) {
-        $data = array('id_user' => p('id_user'), 'id_group' => $id);
-        q('demo_usergroup')->i($data)->run();
+        q('demo_user')->i($data)->getInsertId();
     }
-    j(array('result' => true, 'data' => p()));
+    
+    // redirect
+    app()->redirect(u('/demo/crud'));
 });
+
+r('/demo/crud/del/(:num)', function($id) {
+    
+    // delete user
+    q('demo_usergroup')->d('id_user = ?', array($id))->getRowCount();
+    q('demo_user')->d('id = ? ', array($id))->getRowCount();
+    
+    // redirect
+    app()->redirect(u('/demo/crud'));
+});
+
