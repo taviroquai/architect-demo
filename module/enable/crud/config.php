@@ -38,7 +38,7 @@ r('/demo/crud/(:num)', function($id = 0) {
             array('type' => 'checklist','property'  => 'id_group', 
                 'class' => 'checklist inline',
                 'items_table' => 'demo_group', 'prop_label' => 'name',
-                'selected_items_table' => 'demo_usergrou'),
+                'selected_items_table' => 'demo_usergroup'),
             array('type' => 'breakline'),
             array('type' => 'submit',   'label' => 'Save', 
                 'class' => 'btn btn-success inline'),
