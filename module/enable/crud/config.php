@@ -15,6 +15,7 @@ r('/demo/crud', function() {
         )
     );
     $panel = app()->createAutoTable($config);
+    $panel->pagination->parseCurrent(app()->input);
 
     $v = v(__DIR__.'/theme/tablepanel.php');
     $v->addContent('<a class="btn" href="'.u('/demo/crud/0'.'">New</a>'));
