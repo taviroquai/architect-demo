@@ -142,6 +142,13 @@ pre {
 
 .gallery .thumb {
     margin: 0 auto;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gallery img {
+    height: 100%;
+    max-width: inherit;
 }
 
 .editor {

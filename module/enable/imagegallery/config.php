@@ -1,31 +1,25 @@
 <?php
 
-r('/demo/filegallery', function() {
+r('/demo/imagegallery', function() {
     
-    c(u('/arch/asset/css/font-awesome.min.css'), 'css');
+    c(BASE_URL.'/theme/default/css/slimbox2.css', 'css');
+    c(BASE_URL.'/theme/default/js/slimbox2.js', 'js');
     
     // trigger event before show view
-    tr('demo.filegallery.before.view');
+    tr('demo.imagegallery.before.view');
     
     // prepare gallery view
-    $tmpl = ARCH_PATH.'/theme/architect/filegallery.php';
-    $gallery = app()->createFileExplorer(THEME_PATH.'/data/thumb', $tmpl);
-    $gallery->set('url', '/demo/filegallery');
+    $gallery = app()->createImageGallery(THEME_PATH.'/data');
+    $gallery->set('url', '/demo/imagegallery');
     $gallery->setPathToUrl(function($path) {
-        return u('/demo/filegallery', array('img' => $path));
+        return BASE_URL.'/theme/data';
     });
 
     $view = v(__DIR__.'/theme/template.php')->addContent($gallery);
     c($view);
 });
 
-e('demo.filegallery.before.view', function()
-{
-    // responde to get image request
-    if (g('img')) app()->download(g('img'), false); // not as attachment (false)   
-});
-
-e('demo.filegallery.before.view', function()
+e('demo.imagegallery.before.view', function()
 {
     // create thumbs if they not exists
     if (!is_dir(THEME_PATH.'/data/thumb')) {
@@ -33,6 +27,7 @@ e('demo.filegallery.before.view', function()
         if (!count(glob(THEME_PATH.'/data/thumb/*.*'))) {
             $originals = glob(THEME_PATH.'/demo/img/*.*');
             foreach ($originals as $item) {
+                copy($item, THEME_PATH.'/data/'.basename($item));
                 app()->createImage($item)->saveThumb(THEME_PATH.'/data/thumb');
             }
         }
