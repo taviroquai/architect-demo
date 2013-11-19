@@ -19,7 +19,7 @@ r('/demo', function() {
         array('title' => 'Crud - Auto Table / Form', 'href' => u('/demo/crud')),
         array('title' => 'Date Picker', 'href' => u('/demo/datepicker')),
         array('title' => 'File Explorer', 'href' => u('/demo/fileexplorer')),
-        array('title' => 'File Gallery', 'href' => u('/demo/filegallery')),
+        array('title' => 'Image Gallery', 'href' => u('/demo/imagegallery')),
         array('title' => 'File Upload', 'href' => u('/demo/fileupload')),
         array('title' => 'Forum', 'href' => u('/demo/forum')),
         array('title' => 'Hello World', 'href' => u('/hello')),
