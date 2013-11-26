@@ -30,6 +30,7 @@ r('/demo', function() {
         array('title' => 'Poll', 'href' => u('/demo/poll')),
         array('title' => 'Register Form', 'href' => u('/user/register')),
         array('title' => 'Shopping Cart', 'href' => u('/demo/cart')),
+        array('title' => 'Social Profile', 'href' => u('/demo/social')),
         array('title' => 'Text Editor', 'href' => u('/demo/texteditor')),
         array('title' => 'Tree View', 'href' => u('/demo/treeview'))
     );
