@@ -8,13 +8,13 @@ class ViewLogin extends \Arch\View
     {
         parent::__construct(__DIR__.'/../../theme/login_form.php');
         
-        $login = app()->session->login;
+        $login = app()->session->get('login');
         if (empty($login)) {
             // set data
-            $post = app()->session->last_post;
+            $post = app()->session->get('last_post');
             if (isset($post['email'])) {
                 $this->set('email', filter_var($post['email']));
-                unset(app()->session->last_post);
+                app()->session->del('last_post');
             }
         } else {
             // set session and logout template

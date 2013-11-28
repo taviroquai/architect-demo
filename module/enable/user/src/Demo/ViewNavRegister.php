@@ -8,7 +8,7 @@ class ViewNavRegister extends \Arch\View
         parent::__construct(__DIR__.'/../../theme/register_navlink.php');
         
         // hide if there is a user logged in
-        if (app()->session->login) {
+        if (app()->session->get('login')) {
             $this->hide();
         }
     }

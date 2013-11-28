@@ -7,8 +7,7 @@ class ViewNavLogin extends \Arch\View
     {
         parent::__construct(__DIR__.'/../../theme/login_navform.php');
 
-        $login = app()->session->login;
-        
+        $login = app()->session->get('login');
         if (empty($login)) {
             $this->set('loginUrl', app()->url('/login/post'));
         }

@@ -16,7 +16,7 @@ class Twitter extends \Social {
 
     public function isValid()
     {
-        return $this->session->twtoken ? true : false;
+        return $this->session->get('twtoken') ? true : false;
     }
 
     public function connect($redirect_uri)
@@ -26,13 +26,13 @@ class Twitter extends \Social {
             $connection = new TwitterOAuth(
                 $this->id,
                 $this->secret,
-                $this->session->oauth_token,
-                $this->session->oauth_token_secret
+                $this->session->get('oauth_token'),
+                $this->session->get('oauth_token_secret')
             );
             $access_token = $connection->getAccessToken($verifier);
-            $this->session->twtoken = $access_token;
-            $this->session->oauth_token = false;
-            $this->session->oauth_token_secret = false;
+            $this->session->set('twtoken', $access_token);
+            $this->session->delete('oauth_token');
+            $this->session->delete('oauth_token_secret');
 
             if ($connection->http_code == 200) {
                 return true;
@@ -40,8 +40,9 @@ class Twitter extends \Social {
         } else {
             $connection = new TwitterOAuth($this->id, $this->secret);
             $request_token = $connection->getRequestToken($redirect_uri);
-            $this->session->oauth_token = $token = $request_token['oauth_token'];
-            $this->session->oauth_token_secret = $request_token['oauth_token_secret'];
+            $this->session->set('oauth_token', $request_token['oauth_token']);
+            $this->session->set('oauth_token_secret', $request_token['oauth_token_secret']);
+            $token = $this->session->get('oauth_token');
 
             if ($connection->http_code == 200) {
                 $url = $connection->getAuthorizeURL($token, FALSE);
@@ -57,7 +58,7 @@ class Twitter extends \Social {
             return null;
         }
         
-        $access_token = $this->session->twtoken;
+        $access_token = $this->session->get('twtoken');
         $api = new TwitterOAuth(
             $this->id,
             $this->secret,
@@ -69,7 +70,7 @@ class Twitter extends \Social {
     
     public function getProfile()
     {
-        $access_token = $this->session->twtoken;
+        $access_token = $this->session->get('twtoken');
         $api = new TwitterOAuth(
             $this->id,
             $this->secret,

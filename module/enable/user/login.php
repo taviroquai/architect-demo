@@ -26,9 +26,9 @@ r('/login/post', function() {
     $model = new \Demo\ModelUser();
     $user = $model->login(p('email'), p('password'));
 
-    if ($user) app()->session->login = $user->email;
+    if ($user) app()->session->set('login', $user->email);
     else {
-        app()->session->last_post = p();
+        app()->session->set('last_post', p());
         app()->redirect (u('/login'));
     }
 

@@ -16,7 +16,7 @@ class Facebook extends \Social {
     
     public function isValid()
     {
-        return $this->session->fbtoken ? true : false;
+        return $this->session->get('fbtoken') ? true : false;
     }
     
     public function connect($redirect_uri)
@@ -31,7 +31,7 @@ class Facebook extends \Social {
         if (app()->input->get('code')) {
             $fbtoken = $api->getAccessToken(app()->input->get('code'));
             if (!empty($fbtoken)) {
-                $this->session->fbtoken = $fbtoken;
+                $this->session->set('fbtoken', $fbtoken);
                 return true;
             }
         } else {
@@ -49,7 +49,7 @@ class Facebook extends \Social {
         $api = new Facebook_oauth(array(
             'client_id'     => $this->id,
             'client_secret' => $this->secret,
-            'access_token'  => $this->session->fbtoken
+            'access_token'  => $this->session->get('fbtoken')
         ));
         return $api;
     }
@@ -59,7 +59,7 @@ class Facebook extends \Social {
         $fb = new Facebook_oauth(array(
             'client_id'     => $this->id,
             'client_secret' => $this->secret,
-            'access_token'  => $this->session->fbtoken
+            'access_token'  => $this->session->get('fbtoken')
         ));
         $profile = $fb->get('/me');
         if (!empty($profile->error)) {

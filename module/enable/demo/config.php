@@ -42,12 +42,15 @@ r('/demo', function() {
 });
 
 // manually add session start
-e('arch.session.before.load', function () {
+e('arch.session.load', function () {
     ini_set('session.gc_probability', 0);
     @session_start();
+    app()->session->load($_SESSION);
 });
 
-e('arch.session.after.save', function () {
+e('arch.session.save', function () {
+    // trigger core event
+    app()->session->save($_SESSION);
     @session_write_close();
 });
 
