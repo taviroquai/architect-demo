@@ -3,7 +3,7 @@
 r('/demo/forum', function() {
     
     $forum_model = new \Demo\ModelForum();
-    $forum = app()->createForum();
+    $forum = new \Demo\Forum();
     $forum->set('url', '/demo/forum');
     $forum->set('categories', $forum_model->getCategories());
 
@@ -23,7 +23,7 @@ r('/demo/forum/(:any)', function($alias = 1) {
     }
     
     $item = $forum_model->getForumByAlias($alias);
-    $forum = app()->createForum();
+    $forum = new \Demo\Forum();
     $forumitem = $forum->createItem();
     $forumitem->set('forum', $item);
     $forumitem->set('url', '/demo/forum/'.$alias);
@@ -42,7 +42,7 @@ r('/demo/forum/(:any)/(:any)', function($falias, $alias) {
     }
     
     $topic = $forum_model->getTopicByAlias($alias);
-    $forum = app()->createForum();
+    $forum = new \Demo\Forum();
     $topicview = $forum->createTopic();
     $topicview->set('topic', $topic);
     $topicview->set('url', '/demo/forum/topic/');
