@@ -8,14 +8,6 @@ namespace Demo;
 class ModelUser
 {
     /**
-     * Returns a new user model
-     */
-    public function __construct()
-    {
-        
-    }
-    
-    /**
      * Returns the new user database object
      * @param array $data The associative array contaning the user data
      * @return \stdClass The user object
@@ -58,9 +50,8 @@ class ModelUser
         $user = false;
         
         $validator = app()->createValidator();
-        $rule = $validator->createRule('email')
-                ->setErrorMessage('Invalid email address')
-                ->setAction('isEmail');
+        $rule = $validator->createRule('email', 'IsEmail')
+                ->setErrorMessage('Invalid email address');
         $validator->addRule($rule);
         $result = $validator->validate()->getResult();
         app()->session->loadMessages($validator->getMessages());
@@ -108,25 +99,21 @@ class ModelUser
     {   
         $validator = app()->createValidator();
         
-        $rule = $validator->createRule('email')
-                ->setErrorMessage('Invalid email address')
-                ->setAction('isEmail');
+        $rule = $validator->createRule('email', 'IsEmail')
+                ->setErrorMessage('Invalid email address');
         $validator->addRule($rule);
         
-        $rule = $validator->createRule('email')
+        $rule = $validator->createRule('email', 'Unique')
                 ->setErrorMessage('Use other email')
-                ->setAction('unique')
                 ->addParam(q('demo_user')->s('email')->fetchColumn());
         $validator->addRule($rule);
         
         $rule = $validator->createRule('password')
-                ->setErrorMessage('Password cannot be empty')
-                ->setAction('required');
+                ->setErrorMessage('Password cannot be empty');
         $validator->addRule($rule);
         
-        $rule = $validator->createRule('password')
+        $rule = $validator->createRule('password', 'Equals')
                 ->setErrorMessage('Password does not match')
-                ->setAction('equals')
                 ->addParam(p('password_confirm'));
         $validator->addRule($rule);
 
