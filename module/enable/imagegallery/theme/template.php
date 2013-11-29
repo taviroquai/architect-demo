@@ -13,7 +13,7 @@ $tmpl = ARCH_PATH.'/theme/architect/filegallery.php';
 $gallery = app()->createFileExplorer(THEME_PATH.'/data/thumb', $tmpl);
 $gallery->set('url', '/demo/filegallery');
 $gallery->setPathToUrl(function($path) {
-    return BASE_URL.'/'.INDEX_FILE.'/demo?img='.$path;
+    return conf('BASE_URL').'/'.INDEX_FILE.'/demo?img='.$path;
 });
         </pre>
     </div>

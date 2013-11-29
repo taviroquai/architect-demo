@@ -7,6 +7,7 @@
     <meta name="description" 
           content="<?=empty($description) ? '' : $description?>">
     <meta name="author" content="<?=empty($author) ? '' : $author?>">
+    <base href="<?=app()->config->get('BASE_URL')?>/" />
     
     <!-- Le styles -->
     <?php $this->slot('css', function($item) { ?>
@@ -20,15 +21,15 @@
     </style>
     
     <script type="text/javascript">
-        var BASE_URL = '<?=BASE_URL?>/';
-        var INDEX_FILE = '<?=INDEX_FILE?>';
+        var BASE_URL = '<?=app()->config->get('BASE_URL')?>/';
+        var INDEX_FILE = '<?=app()->config->get('INDEX_FILE')?>';
     </script>
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="<?=BASE_URL?>/theme/default/js/html5shiv.js"></script>
+      <script src="theme/default/js/html5shiv.js"></script>
     <![endif]-->
-    <script src="<?=BASE_URL?>/theme/default/js/jquery.js"></script>
+    <script src="theme/default/js/jquery.js"></script>
     
   </head>
 
@@ -44,7 +45,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="<?=app()->url('/')?>">
-              <img src="<?=BASE_URL?>/theme/default/img/arch_logo.png" />
+              <img src="theme/default/img/arch_logo.png" />
           </a>
           
           <div class="nav-collapse collapse">

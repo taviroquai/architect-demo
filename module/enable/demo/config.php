@@ -3,7 +3,7 @@
 // add main route
 r('/', function() {
 	// add content
-    $v = new \Arch\View(THEME_PATH.'/demo/default.php');
+    $v = new \Arch\View(conf('THEME_PATH').'/demo/default.php');
     $v->set('idiom', app()->createIdiom());
     c($v);
 });
@@ -56,8 +56,8 @@ e('arch.session.save', function () {
 
 // add demo stylesheet; use before theme render event
 e('arch.theme.after.load', function() {
-    c(BASE_URL.'/theme/default/css/animate-custom.css', 'css');
-    c(BASE_URL.'/theme/demo/css/style.css', 'css');
+    c(conf('BASE_URL').'/theme/default/css/animate-custom.css', 'css');
+    c(conf('BASE_URL').'/theme/demo/css/style.css', 'css');
     $path = app()->createBreadcrumbs();
     c($path);
 });

@@ -3,7 +3,7 @@
 r('/demo/fileupload', function() {
     
     if ($file = f(0)) {
-        app()->upload($file, THEME_PATH.'/data');
+        app()->upload($file, conf('THEME_PATH').'/data');
     }
     $fileupload = app()->createFileUpload();
 
