@@ -7,9 +7,8 @@
         <h4>PHP</h4>
         <pre>
 $config = array(
-    'data_dbname'   => 'architect',
-    'data_table'    => 'demo_user',
-    'table_select'  => 'demo_user.*',
+    'table'     => 'demo_user',
+    'select'    => 'demo_user.*',
     'columns'       => array(
         array('type'    => 'value', 'label' => 'ID', 'property' => 'id')
     )

@@ -7,7 +7,6 @@
         <h4>PHP</h4>
         <pre>
 $config = array(
-    'database'  => 'architect',
     'table'     => 'demo_user',
     'select'    => 'demo_user.*',
     'action'    => u('/demo/scaffolding/save'),

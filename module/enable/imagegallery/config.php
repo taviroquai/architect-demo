@@ -13,6 +13,7 @@ r('/demo/imagegallery', function() {
         conf('THEME_PATH')
         .'/data'
     );
+    $gallery->setInputParam(g($gallery->get('param')));
     $gallery->set('url', '/demo/imagegallery');
     $gallery->setPathToUrl(function($path) {
         return conf('BASE_URL').'/theme/data';

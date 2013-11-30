@@ -3,6 +3,7 @@
 r('/demo/fileexplorer', function() {
     
     $explorer = app()->createFileExplorer(conf('THEME_PATH'));
+    $explorer->setInputParam(g($explorer->get('param')));
     $explorer->set('url', '/demo/fileexplorer');
     $explorer->setPathToUrl(function($path) {
         return $path;
