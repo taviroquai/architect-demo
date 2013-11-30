@@ -19,6 +19,7 @@
     <item name="DB_DRIVER">mysql</item>
     <item name="DB_HOST">localhost</item>
     <item name="DB_DATABASE">architect</item>
+    <!--<item name="DB_DATABASE">./theme/data/architect.db</item>-->
     <item name="DB_USER">root</item>
     <item name="DB_PASS">toor</item>
     

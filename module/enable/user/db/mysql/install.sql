@@ -77,8 +77,8 @@ CREATE TABLE IF NOT EXISTS `demo_topic` (
 ALTER TABLE `demo_topic` MODIFY COLUMN `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 ALTER TABLE `demo_topic` CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE `demo_topic` ENGINE=InnoDB;
-CREATE INDEX `forum_fk_idx` ON `demo_topic` (`id_forum`);
-CREATE INDEX `user_fk_idx` ON `demo_topic` (`id_user`);
+CREATE INDEX `topic_forum_fk_idx` ON `demo_topic` (`id_forum`);
+CREATE INDEX `topic_user_fk_idx` ON `demo_topic` (`id_user`);
 ALTER TABLE `demo_topic` ADD CONSTRAINT `topic_forum_fk` FOREIGN KEY (`id_forum`) REFERENCES `demo_forum` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;
 ALTER TABLE `demo_topic` ADD CONSTRAINT `topic_user_fk` FOREIGN KEY (`id_user`) REFERENCES `demo_user` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;
 --
@@ -96,29 +96,10 @@ CREATE TABLE IF NOT EXISTS `demo_post` (
 ALTER TABLE `demo_post` MODIFY COLUMN `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 ALTER TABLE `demo_post` CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ALTER TABLE `demo_post` ENGINE=InnoDB;
-CREATE INDEX `topic_fk_idx` ON `demo_post` (`id_topic`);
-CREATE INDEX `user_fk_idx` ON `demo_post` (`id_user`);
+CREATE INDEX `post_topic_fk_idx` ON `demo_post` (`id_topic`);
+CREATE INDEX `post_user_fk_idx` ON `demo_post` (`id_user`);
 ALTER TABLE `demo_post` ADD CONSTRAINT `post_topic_fk` FOREIGN KEY (`id_topic`) REFERENCES `demo_topic` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;
 ALTER TABLE `demo_post` ADD CONSTRAINT `post_user_fk` FOREIGN KEY (`id_user`) REFERENCES `demo_user` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;
---
--- Table `demo_revision`
---
-CREATE TABLE IF NOT EXISTS `demo_revision` (
-  `id` int(11) NOT NULL,
-  `body` TEXT,
-  `datetime` DATETIME NOT NULL,
-  `id_post` int(11) UNSIGNED NOT NULL,
-  `id_user` int(11) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
-ALTER TABLE `demo_revision` MODIFY COLUMN `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT;
-ALTER TABLE `demo_revision` CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-ALTER TABLE `demo_revision` ENGINE=InnoDB;
-CREATE INDEX `post_fk_idx` ON `demo_revision` (`id_post`);
-CREATE INDEX `user_fk_idx` ON `demo_revision` (`id_user`);
-ALTER TABLE `demo_revision` ADD CONSTRAINT `revision_post_fk` FOREIGN KEY (`id_post`) REFERENCES `demo_post` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;
-ALTER TABLE `demo_revision` ADD CONSTRAINT `revision_user_fk` FOREIGN KEY (`id_user`) REFERENCES `demo_user` (`id`) ON UPDATE NO ACTION ON DELETE NO ACTION;
 
 --
 -- Insert default data
@@ -141,7 +122,4 @@ INSERT INTO `demo_topic` (`id`, `title`, `alias`, `keywords`, `datetime`, `id_fo
 (1, 'Welcome Users', 'welcome-users', 'welcome', NOW(), 1, 1);
 
 INSERT INTO `demo_post` (`id`, `body`, `datetime`, `id_topic`, `id_user`) VALUES
-(1, '<p>First post by Architect Demo<p>', NOW(), 1, 1);
-
-INSERT INTO `demo_revision` (`id`, `body`, `datetime`, `id_post`, `id_user`) VALUES
 (1, '<p>First post by Architect Demo<p>', NOW(), 1, 1);

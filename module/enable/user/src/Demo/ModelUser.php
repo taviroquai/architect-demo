@@ -18,7 +18,7 @@ class ModelUser
         if ($this->validateCreate($data)) {
             
             $email = $data['email'];
-            $view = new \Arch\View(THEME_PATH.'/demo/email_template.php');
+            $view = new \Arch\View(conf('THEME_PATH').'/demo/email_template.php');
             $view->addContent("Thank you $email for registering!");
 
             $email_result = $this->mail($email, 'Register', $view);
@@ -219,7 +219,7 @@ class ModelUser
     public function mail($to, $subject, $view)
     {
         try {
-            require_once THEME_PATH.'/../vendor/phpmailer/class.phpmailer.php';
+            require_once conf('THEME_PATH').'/../vendor/phpmailer/class.phpmailer.php';
             $mail = new \PHPMailer(true); // defaults to using php "mail()"
             $mail->CharSet = 'UTF-8';
             $mail->SetFrom(MAIL_FROM, MAIL_FROMNAME);
@@ -249,10 +249,11 @@ class ModelUser
     {
         if (!q('demo_user')->execute('select 1 from demo_user', null, '')) {
             if ($install) {
-                $filename = MODULE_PATH.'/enable/user/db/install.sql';
+                $filename = app()->config->get('MODULE_PATH')
+                        .'/enable/user/db/pgsql/install.sql';
                 $r = q('demo_user')->install($filename);
                 if (!$r) {
-                    app()->log($e->getMessage(), 'error');
+                    app()->log('Failed install database', 'error');
                     app()->redirect(\Arch\App::Instance()->url('/404'));
                 }
             }
