@@ -9,6 +9,7 @@ r('/demo/poll', function() {
     $poll->setVotes("Candidate 4", 762);
     $poll->setVotes("Candidate 5", 551);
     $poll->set('labels', array('Votes'));
+    if (p($poll->get('input_name'))) $poll->set('show_votes', true);
 
     $view = v(__DIR__.'/theme/template.php')->addContent($poll);
     c($view);
