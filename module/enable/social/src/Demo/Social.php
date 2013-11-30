@@ -1,4 +1,5 @@
 <?php
+namespace Demo;
 
 /**
  * Description of Social helper
@@ -31,7 +32,7 @@ abstract class Social
      * @param string $secret
      * @param \Arch\Session $session
      */
-    public function __construct($id, $secret, \Arch\Session $session)
+    public function __construct($id, $secret, \Arch\Registry\Session $session)
     {
         $this->id       = $id;
         $this->secret   = $secret;
@@ -52,17 +53,17 @@ abstract class Social
             case 'twitter':
                 $id = $keys[$client]['id'];
                 $secret = $keys[$client]['secret'];
-                $instance = new \Twitter($id, $secret, app()->session);
+                $instance = new \Demo\Twitter($id, $secret, app()->session);
                 break;
             case 'facebook':
                 $id = $keys[$client]['id'];
                 $secret = $keys[$client]['secret'];
-                $instance = new \Facebook($id, $secret, app()->session);
+                $instance = new \Demo\Facebook($id, $secret, app()->session);
                 break;
             case 'google':
                 $id = $keys[$client]['id'];
                 $secret = $keys[$client]['secret'];
-                $instance = new \Google($id, $secret, app()->session);
+                $instance = new \Demo\Google($id, $secret, app()->session);
                 break;
         }
         return $instance;

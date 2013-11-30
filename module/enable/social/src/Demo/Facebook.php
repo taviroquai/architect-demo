@@ -1,15 +1,16 @@
 <?php
+namespace Demo;
 
 /**
  * Description of Facebook client helper
  *
  * @author mafonso
  */
-require_once __DIR__.'/facebook/Facebook_oauth.php';
+require_once __DIR__.'/../../vendor/facebook/Facebook_oauth.php';
 
-class Facebook extends \Social {
+class Facebook extends \Demo\Social {
     
-    public function __construct($id, $secret, \Arch\Session $session)
+    public function __construct($id, $secret, \Arch\Registry\Session $session)
     {
         parent::__construct($id, $secret, $session);
     }
@@ -21,7 +22,7 @@ class Facebook extends \Social {
     
     public function connect($redirect_uri)
     {
-        $api = new Facebook_oauth(array(
+        $api = new \Facebook_oauth(array(
             'client_id'     => $this->id,
             'client_secret' => $this->secret,
             'callback_url'  => $redirect_uri,
@@ -46,7 +47,7 @@ class Facebook extends \Social {
             return null;
         }
         
-        $api = new Facebook_oauth(array(
+        $api = new \Facebook_oauth(array(
             'client_id'     => $this->id,
             'client_secret' => $this->secret,
             'access_token'  => $this->session->get('fbtoken')
@@ -56,7 +57,7 @@ class Facebook extends \Social {
     
     public function getProfile()
     {
-        $fb = new Facebook_oauth(array(
+        $fb = new \Facebook_oauth(array(
             'client_id'     => $this->id,
             'client_secret' => $this->secret,
             'access_token'  => $this->session->get('fbtoken')

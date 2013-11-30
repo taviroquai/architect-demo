@@ -1,15 +1,16 @@
 <?php
+namespace Demo;
 
 /**
  * Description of Twitter client helper
  *
  * @author mafonso
  */
-require_once __DIR__.'/twitter/twitteroauth.php';
+require_once __DIR__.'/../../vendor/twitter/twitteroauth.php';
 
-class Twitter extends \Social {
+class Twitter extends \Demo\Social {
     
-    public function __construct($id, $secret, \Arch\Session $session)
+    public function __construct($id, $secret, \Arch\Registry\Session $session)
     {
         parent::__construct($id, $secret, $session);
     }
@@ -23,7 +24,7 @@ class Twitter extends \Social {
     {
         if (app()->input->get('oauth_verifier')) {
             $verifier = app()->input->get('oauth_verifier');
-            $connection = new TwitterOAuth(
+            $connection = new \TwitterOAuth(
                 $this->id,
                 $this->secret,
                 $this->session->get('oauth_token'),
@@ -38,7 +39,7 @@ class Twitter extends \Social {
                 return true;
             }
         } else {
-            $connection = new TwitterOAuth($this->id, $this->secret);
+            $connection = new \TwitterOAuth($this->id, $this->secret);
             $request_token = $connection->getRequestToken($redirect_uri);
             $this->session->set('oauth_token', $request_token['oauth_token']);
             $this->session->set('oauth_token_secret', $request_token['oauth_token_secret']);
@@ -59,7 +60,7 @@ class Twitter extends \Social {
         }
         
         $access_token = $this->session->get('twtoken');
-        $api = new TwitterOAuth(
+        $api = new \TwitterOAuth(
             $this->id,
             $this->secret,
             $access_token['oauth_token'],
@@ -71,7 +72,7 @@ class Twitter extends \Social {
     public function getProfile()
     {
         $access_token = $this->session->get('twtoken');
-        $api = new TwitterOAuth(
+        $api = new \TwitterOAuth(
             $this->id,
             $this->secret,
             $access_token['oauth_token'],

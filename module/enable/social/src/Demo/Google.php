@@ -1,16 +1,17 @@
 <?php
+namespace Demo;
 
 /**
  * Description of Google client helper
  *
  * @author mafonso
  */
-require_once __DIR__.'/google/Google_Client.php';
-require_once __DIR__.'/google/contrib/Google_PlusService.php';
+require_once __DIR__.'/../../vendor/google/Google_Client.php';
+require_once __DIR__.'/../../vendor/google/contrib/Google_PlusService.php';
 
-class Google extends \Social {
+class Google extends \Demo\Social {
     
-    public function __construct($id, $secret, \Arch\Session $session)
+    public function __construct($id, $secret, \Arch\Registry\Session $session)
     {
         parent::__construct($id, $secret, $session);
     }
@@ -22,7 +23,7 @@ class Google extends \Social {
     
     public function connect($redirect_uri)
     {
-        $client = new Google_Client();
+        $client = new \Google_Client();
         //$client->setApplicationName(G_APP_NAME);
         $client->setClientId($this->id);
         $client->setClientSecret($this->secret);
@@ -51,7 +52,7 @@ class Google extends \Social {
     
     public function getApi()
     {
-        $client = new Google_Client();
+        $client = new \Google_Client();
         //$client->setApplicationName(G_APP_NAME);
         $client->setClientId($this->id);
         $client->setClientSecret($this->secret);
@@ -61,13 +62,13 @@ class Google extends \Social {
     
     public function getProfile()
     {
-        $client = new Google_Client();
+        $client = new \Google_Client();
         //$client->setApplicationName(G_APP_NAME);
         $client->setClientId($this->id);
         $client->setClientSecret($this->secret);
         $client->setAccessToken($this->session->get('gtoken'));
 
-        $plus = new Google_PlusService($client);
+        $plus = new \Google_PlusService($client);
         $profile = $plus->people->get('me');
         $this->session->set('gtoken', $client->getAccessToken());
         return $profile;
@@ -75,7 +76,7 @@ class Google extends \Social {
     
     public function logout($redirect_uri)
     {
-        $client = new Google_Client();
+        $client = new \Google_Client();
         //$client->setApplicationName(G_APP_NAME);
         $client->setClientId($this->id);
         $client->setClientSecret($this->secret);

@@ -1,11 +1,5 @@
 <?php
 
-// include helpers
-require_once __DIR__.'/lib/Social.php';
-require_once __DIR__.'/lib/Twitter.php';
-require_once __DIR__.'/lib/Facebook.php';
-require_once __DIR__.'/lib/Google.php';
-
 // Default social page
 r('/demo/social', function() {
     $v = app()->createView(__DIR__.'/theme/template.php');
@@ -19,7 +13,7 @@ r('/demo/social', function() {
 // Display Twitter profile
 r('/demo/social/twitter', function() {
     
-    $helper = \Social::factory('twitter');
+    $helper = \Demo\Social::factory('twitter');
     if (!$helper->isValid()) {
         m('Login with Twitter first', 'alert alert-error');
         app()->redirect(u('/demo/social'));
@@ -37,7 +31,7 @@ r('/demo/social/twitter', function() {
 // Display Facebook profile
 r('/demo/social/facebook', function() {
     
-    $helper = \Social::factory('facebook');
+    $helper = \Demo\Social::factory('facebook');
     if (!$helper->isValid()) {
         m('Login with Facebook first', 'alert alert-error');
         app()->redirect(u('/demo/social'));
@@ -60,7 +54,7 @@ r('/demo/social/facebook', function() {
 // Display Google profile
 r('/demo/social/google', function() {
     
-    $helper = \Social::factory('google');
+    $helper = \Demo\Social::factory('google');
     if (!$helper->isValid()) {
         m('Login with Google first', 'alert alert-error');
         app()->redirect(u('/demo/social'));
@@ -72,7 +66,7 @@ r('/demo/social/google', function() {
     
     try {
         $profile = $helper->getProfile();
-    } catch (Google_ServiceException $e) {
+    } catch (\Google_ServiceException $e) {
         m('Google error: '.$e->getMessage(), 'alert alert-error');
         app()->redirect(u('/demo/social'));
     }
@@ -93,7 +87,7 @@ r('/demo/social/connect/(:any)', function($client) {
         app()->redirect(u('/demo/social'));
     }
     
-    $helper = \Social::factory($client);
+    $helper = \Demo\Social::factory($client);
     if ($helper->isValid()) {
         app()->redirect(u('/demo/social/'.$client));
     }
