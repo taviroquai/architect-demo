@@ -23,6 +23,7 @@ r('/demo', function() {
         array('title' => 'File Upload', 'href' => u('/demo/fileupload')),
         array('title' => 'Forum', 'href' => u('/demo/forum')),
         array('title' => 'Hello World', 'href' => u('/hello')),
+        array('title' => 'HTTP Request', 'href' => u('/demo/http')),
         array('title' => 'Line Chart', 'href' => u('/demo/linechart')),
         array('title' => 'Login Form', 'href' => u('/login')),
         array('title' => 'Map', 'href' => u('/demo/map')),
