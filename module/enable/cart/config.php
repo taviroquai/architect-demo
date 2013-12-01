@@ -4,6 +4,7 @@ r('/demo/cart', function() {
     
     // demo of the shopping cart
     $cart = app()->createCart();
+    $cart->set('checkoutUrl', u('/demo/cart'));
     // if you use other item attributes please extend Model_Cart, View_Cart, 
     // copy template theme/default/cart.php and change attributes
     $item = (object) array('name' => 'Product1', 'price' => 30, 'tax' => 0.21);
