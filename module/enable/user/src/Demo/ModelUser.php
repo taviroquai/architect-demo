@@ -254,7 +254,7 @@ class ModelUser
                 $r = q('demo_user')->install($filename);
                 if (!$r) {
                     app()->log('Failed install database', 'error');
-                    app()->redirect(\Arch\App::Instance()->url('/404'));
+                    app()->redirect(app()->url('/404'));
                 }
             }
         }
