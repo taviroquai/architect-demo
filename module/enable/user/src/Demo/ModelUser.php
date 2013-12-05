@@ -49,15 +49,14 @@ class ModelUser
         
         $user = false;
         
-        $validator = app()->createValidator();
-        $rule = $validator->createRule('email', 'IsEmail')
+        $rule = app()->input->createRule('email', 'IsEmail')
                 ->setErrorMessage('Invalid email address');
-        $validator->addRule($rule);
-        $result = $validator->validate()->getResult();
-        app()->session->loadMessages($validator->getMessages());
+        app()->input->addRule($rule);
+        $result = app()->input->validate()->getResult();
+        app()->session->loadMessages(app()->input->getMessages());
         if ($result) {
-            $email      = filter_var($email);
-            $password   = s(filter_var($password));
+            $email      = app()->input->post('email');
+            $password   = s(app()->input->post('password'));
             $user = $this->findOne(
                 'email = ? and password = ?', 
                 array($email, $password)
@@ -96,29 +95,27 @@ class ModelUser
      * @return boolean Returns true if all data is valid, otherwise false
      */
     public function validateCreate()
-    {   
-        $validator = app()->createValidator();
-        
-        $rule = $validator->createRule('email', 'IsEmail')
+    {
+        $rule = app()->input->createRule('email', 'IsEmail')
                 ->setErrorMessage('Invalid email address');
-        $validator->addRule($rule);
+        app()->input->addRule($rule);
         
-        $rule = $validator->createRule('email', 'Unique')
+        $rule = app()->input->createRule('email', 'Unique')
                 ->setErrorMessage('Use other email')
                 ->addParam(q('demo_user')->s('email')->fetchColumn());
-        $validator->addRule($rule);
+        app()->input->addRule($rule);
         
-        $rule = $validator->createRule('password')
+        $rule = app()->input->createRule('password')
                 ->setErrorMessage('Password cannot be empty');
-        $validator->addRule($rule);
+        app()->input->addRule($rule);
         
-        $rule = $validator->createRule('password', 'Equals')
+        $rule = app()->input->createRule('password', 'Equals')
                 ->setErrorMessage('Password does not match')
                 ->addParam(p('password_confirm'));
-        $validator->addRule($rule);
+        app()->input->addRule($rule);
 
-        $result = $validator->validate()->getResult();
-        app()->session->loadMessages($validator->getMessages());
+        $result = app()->input->validate()->getResult();
+        app()->session->loadMessages(app()->input->getMessages());
         return $result;
     }
     

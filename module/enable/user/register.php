@@ -24,7 +24,7 @@ r('/user/register-success', function() {
 
 // add event save post
 e('register.form.before.view', function() {
-
+    
     if (p('register') && app()->getCaptcha()) {
 
         // load model
