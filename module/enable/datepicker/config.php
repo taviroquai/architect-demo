@@ -3,7 +3,7 @@
 r('/demo/datepicker', function() {
     
     $datepicker = app()->createDatePicker();
-    $datepicker->set('default', date('Y-m-d', time() + 60*60*24));
+    $datepicker->set('value', date('Y-m-d', time() + 60*60*24));
 
     $view = v(__DIR__.'/theme/template.php')->addContent($datepicker);
     c($view);

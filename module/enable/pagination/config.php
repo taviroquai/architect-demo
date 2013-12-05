@@ -3,8 +3,9 @@
 r('/demo/pagination', function() {
     
     $pagination = app()->createPagination();
-    $pagination->total = 10;
-    $pagination->limit = 10;
+    $pagination->setLimit(3);
+    $pagination->setTotalItems(10);
+    $pagination->parseCurrent(app()->input);
 
     $view = v(__DIR__.'/theme/template.php');
     $view->set('pagination', $pagination);

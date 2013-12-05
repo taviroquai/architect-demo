@@ -9,7 +9,7 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$explorer = app()->createFileExplorer(THEME_PATH);
+$explorer = app()->createFileExplorer(conf('THEME_PATH'));
 $explorer->set('url', '/demo');
         </pre>
         <h4>Default Template</h4>
