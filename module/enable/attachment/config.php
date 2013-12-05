@@ -4,7 +4,9 @@ r('/demo/attachment', function() {
     
     $downloads_dir = conf('THEME_PATH').'/default/img/';
     if (g('dl')) {
-        app()->download($downloads_dir.g('dl'));
+        if (!app()->download($downloads_dir.g('dl'))) {
+            $this->redirect($this->url('/404'));
+        }
     }
 
     $url = u('/demo/attachment', array('dl' => 'glyphicons-halflings.png'));
