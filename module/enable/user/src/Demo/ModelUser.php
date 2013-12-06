@@ -13,30 +13,26 @@ class ModelUser
      * @return \stdClass The user object
      */
     public function register($data)
-    {
-        // validate post
-        if ($this->validateCreate($data)) {
-            
-            $email = $data['email'];
-            $view = new \Arch\View(conf('THEME_PATH').'/demo/email_template.php');
-            $view->addContent("Thank you $email for registering!");
+    {    
+        $email = $data['email'];
+        $view = new \Arch\View(conf('THEME_PATH').'/demo/email_template.php');
+        $view->addContent("Thank you $email for registering!");
 
-            $email_result = $this->mail($email, 'Register', $view);
-            if(!$email_result) {
-                m("Registration failed. Try again.", 'alert alert-error');
+        $email_result = $this->mail($email, 'Register', $view);
+        if(!$email_result) {
+            m("Registration failed. Try again.", 'alert alert-error');
+        }
+        else {
+            // finally register
+            $user = $this->import($this->create(), $data);
+            $user->password = s($user->password);
+            if ($this->save($user)) {
+                m("An email was sent to your address");
+                return $user;
+            } else {
+                m("Could not complete registration. Please ignore any email", 'alert alert-error');
             }
-            else {
-                // finally register
-                $user = $this->import($this->create(), $data);
-                $user->password = s($user->password);
-                if ($this->save($user)) {
-                    m("An email was sent to your address");
-                    return $user;
-                } else {
-                    m("Could not complete registration. Please ignore any email", 'alert alert-error');
-                }
-            }
-        } 
+        }
         return false;
     }
     
@@ -47,22 +43,13 @@ class ModelUser
      */
     public function login($email, $password) {
         
-        $user = false;
-        
-        $rule = app()->input->createRule('email', 'IsEmail')
-                ->setErrorMessage('Invalid email address');
-        app()->input->addRule($rule);
-        $result = app()->input->validate()->getResult();
-        app()->session->loadMessages(app()->input->getMessages());
-        if ($result) {
-            $email      = app()->input->post('email');
-            $password   = s(app()->input->post('password'));
-            $user = $this->findOne(
-                'email = ? and password = ?', 
-                array($email, $password)
-            );
-            if (!$user) m('Invalid email/password', 'alert alert-error');
-        }
+        $email      = app()->input->post('email');
+        $password   = s(app()->input->post('password'));
+        $user = $this->findOne(
+            'email = ? and password = ?', 
+            array($email, $password)
+        );
+        if (!$user) m('Invalid email/password', 'alert alert-error');
         return $user;
     }
     
@@ -87,36 +74,6 @@ class ModelUser
         $user->email = '';
         $user->password = '';
         return $user;
-    }
-    
-    /**
-     * Validates create user data
-     * @param array $input The associative array containing the user data
-     * @return boolean Returns true if all data is valid, otherwise false
-     */
-    public function validateCreate()
-    {
-        $rule = app()->input->createRule('email', 'IsEmail')
-                ->setErrorMessage('Invalid email address');
-        app()->input->addRule($rule);
-        
-        $rule = app()->input->createRule('email', 'Unique')
-                ->setErrorMessage('Use other email')
-                ->addParam(q('demo_user')->s('email')->fetchColumn());
-        app()->input->addRule($rule);
-        
-        $rule = app()->input->createRule('password')
-                ->setErrorMessage('Password cannot be empty');
-        app()->input->addRule($rule);
-        
-        $rule = app()->input->createRule('password', 'Equals')
-                ->setErrorMessage('Password does not match')
-                ->addParam(p('password_confirm'));
-        app()->input->addRule($rule);
-
-        $result = app()->input->validate()->getResult();
-        app()->session->loadMessages(app()->input->getMessages());
-        return $result;
     }
     
     /**
