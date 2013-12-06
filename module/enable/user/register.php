@@ -2,9 +2,9 @@
 /**
  * Default mail configuration
  */
-define('MAIL_FROM',         'taviroquai@hotmail.com');
+define('MAIL_FROM',         '');
 define('MAIL_FROMNAME',     'Application Name');
-define('MAIL_REPLY',        'taviroquai@hotmail.com');
+define('MAIL_REPLY',        '');
 define('MAIL_REPLYNAME',    'Application Name');
 
 // add routes
