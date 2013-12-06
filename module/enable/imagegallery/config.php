@@ -9,12 +9,7 @@ r('/demo/imagegallery', function() {
     tr('demo.imagegallery.before.view');
     
     // prepare gallery view
-    $gallery = app()->createImageGallery(
-        conf('THEME_PATH')
-        .'/data'
-    );
-    $gallery->setInputParam(g($gallery->get('param')));
-    $gallery->set('url', '/demo/imagegallery');
+    $gallery = app()->createImageGallery(conf('THEME_PATH').'/data');
     $gallery->setPathToUrl(function($path) {
         return conf('BASE_URL').'/theme/data';
     });

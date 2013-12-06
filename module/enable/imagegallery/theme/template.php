@@ -1,5 +1,5 @@
 <div class="well">
-    <h1>File Gallery Demo</h1>
+    <h1>Image Gallery Demo</h1>
     <?php $this->slot('content', function($item) { ?>
         <div>
             <?=$item?>
@@ -9,11 +9,9 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$tmpl = ARCH_PATH.'/theme/architect/filegallery.php';
-$gallery = app()->createFileExplorer(THEME_PATH.'/data/thumb', $tmpl);
-$gallery->set('url', '/demo/filegallery');
+$gallery = app()->createImageGallery(conf('THEME_PATH').'/data');
 $gallery->setPathToUrl(function($path) {
-    return conf('BASE_URL').'/'.INDEX_FILE.'/demo?img='.$path;
+    return conf('BASE_URL').'/theme/data';
 });
         </pre>
     </div>

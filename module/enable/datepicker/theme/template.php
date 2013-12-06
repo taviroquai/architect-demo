@@ -10,6 +10,7 @@
         <h4>PHP</h4>
         <pre>
 $datepicker = app()->createDatePicker()
+    ->set('name', 'input_name')
     ->set('value', date('Y/m/d', time() + 60*60*24));
         </pre>
         <h4>Default Template</h4>

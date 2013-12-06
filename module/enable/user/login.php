@@ -29,6 +29,7 @@ r('/login/post', function() {
     if ($user) app()->session->set('login', $user->email);
     else {
         app()->session->set('last_post', p());
+        sleep(2);
         app()->redirect (u('/login'));
     }
 

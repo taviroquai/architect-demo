@@ -7,7 +7,7 @@ r('/demo/forum', function() {
     $forum->set('url', '/demo/forum');
     $forum->set('categories', $forum_model->getCategories());
 
-    $view = v(__DIR__.'/theme/forum.php')->addContent($forum);
+    $view = v(__DIR__.'/theme/forum_explain.php')->addContent($forum);
     c($view);
 });
 
@@ -29,7 +29,7 @@ r('/demo/forum/(:any)', function($alias = 1) {
     $forumitem->set('url', '/demo/forum/'.$alias);
     $forumitem->set('topics', $forum_model->getTopics($item->id));
 
-    $view = v(__DIR__.'/theme/forumitem.php')->addContent($forumitem);
+    $view = v(__DIR__.'/theme/forumitem_explain.php')->addContent($forumitem);
     c($view);
 });
 
@@ -48,6 +48,6 @@ r('/demo/forum/(:any)/(:any)', function($falias, $alias) {
     $topicview->set('url', '/demo/forum/topic/');
     $topicview->set('posts', $forum_model->getPosts($topic->id));
 
-    $view = v(__DIR__.'/theme/forumtopic.php')->addContent($topicview);
+    $view = v(__DIR__.'/theme/forumtopic_explain.php')->addContent($topicview);
     c($view);
 });

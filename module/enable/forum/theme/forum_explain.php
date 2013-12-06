@@ -1,5 +1,5 @@
 <div class="well">
-    <h1>Line Chart Demo</h1>
+    <h1>Forum Demo</h1>
     <?php $this->slot('content', function($item) { ?>
         <div>
             <?=$item?>
@@ -9,15 +9,12 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$data = array(
-    array("x" => "2011 W27", "y" => 100),
-    array("x" => "2011 W28", "y" => 500)
-);
-$chart = app()->createLineChart()
-    ->set('data', $data)
-    ->set('labels', array('Sells'));
+$forum_model = new \Arch\Demo\ModelForum();
+$forum = app()->createForum();
+$forum->set('url', '/demo/forum');
+$forum->set('categories', $forum_model->getCategories());
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/linechart.php</pre>
+        <pre>/theme/architect/forum.php</pre>
     </div>
 </div>

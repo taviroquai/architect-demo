@@ -7,12 +7,11 @@ namespace Demo;
  */
 class ModelForum
 {
-    
-    public function __construct()
-    {
-        
-    }
-
+    /**
+     * Inserts a new topic onto database
+     * @param array $data
+     * @return integer
+     */
     public function addTopic($data)
     {
         $data['alias']      = app()->slug($data['title']);
@@ -21,6 +20,11 @@ class ModelForum
         return q('demo_topic')->i($data)->getInsertId();
     }
     
+    /**
+     * Inserts a new post
+     * @param array $data The post data
+     * @return integer
+     */
     public function addPost($data)
     {
         $data['datetime']   = date('Y-m-d H:i:s');
@@ -28,6 +32,11 @@ class ModelForum
         return q('demo_post')->i($data)->getInsertId();
     }
     
+    /**
+     * Returns a new forum by ID
+     * @param integer $id The forum ID
+     * @return \stdClass
+     */
     public function getForum($id)
     {
         return q('demo_forum')
@@ -36,6 +45,11 @@ class ModelForum
             ->fetchObject();
     }
     
+    /**
+     * Returns a new forum by alias (slug)
+     * @param string $alias The forum slug
+     * @return \stdClass
+     */
     public function getForumByAlias($alias)
     {
         return q('demo_forum')
@@ -44,6 +58,11 @@ class ModelForum
             ->fetchObject();
     }
     
+    /**
+     * Returns a topic by topic id
+     * @param integer $id The topic ID
+     * @return \stdClass
+     */
     public function getTopic($id)
     {
         return q('demo_topic')
@@ -52,6 +71,11 @@ class ModelForum
             ->fetchObject();
     }
     
+    /**
+     * Returns a topic by alias (slug)
+     * @param string $alias The topic slug
+     * @return \stdClass
+     */
     public function getTopicByAlias($alias)
     {
         return q('demo_topic')
@@ -60,6 +84,10 @@ class ModelForum
             ->fetchObject();
     }
 
+    /**
+     * Returns forum categories
+     * @return array
+     */
     public function getCategories()
     {
         return q('demo_forum')
@@ -69,6 +97,11 @@ class ModelForum
             ->fetchAll();
     }
     
+    /**
+     * Returns an array of topis by category ID
+     * @param integer $id the category ID
+     * @return array
+     */
     public function getTopics($id)
     {
         return q('demo_topic')
@@ -79,6 +112,11 @@ class ModelForum
             ->fetchAll();
     }
     
+    /**
+     * Returns all topics by alias
+     * @param string $alias The topic alias
+     * @return array
+     */
     public function getTopicsByAlias($alias)
     {
         return q('demo_topic')
@@ -89,6 +127,11 @@ class ModelForum
             ->fetchAll();
     }
     
+    /**
+     * Returns all post from topic ID
+     * @param integer $id_topic The topic ID
+     * @return array
+     */
     public function getPosts($id_topic)
     {
         return q('demo_post')

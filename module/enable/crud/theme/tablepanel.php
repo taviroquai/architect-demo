@@ -9,8 +9,8 @@
 $config = array(
     'table'     => 'demo_user',
     'select'    => 'demo_user.*',
-    'columns'       => array(
-        array('type'    => 'value', 'label' => 'ID', 'property' => 'id')
+    'columns'   => array(
+        array('type' => 'value', 'label' => 'ID', 'property' => 'id')
     )
 );
 $table = app()->createAutoTable($config);

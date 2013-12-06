@@ -15,7 +15,7 @@ class ForumTopic extends \Arch\View
     {
         if ($tmpl === null) {
             $tmpl = implode(DIRECTORY_SEPARATOR,
-                    array(conf('THEME_PATH'),'demo','forum','forumtopic.php'));
+                    array(__DIR__,'..','..','theme','forumtopic.php'));
         }
 	parent::__construct($tmpl);
         

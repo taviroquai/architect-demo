@@ -12,7 +12,6 @@
 $cart = app()->createCart();
 $item = (object) array('name' => 'Product1', 'price' => 30, 'tax' => 0.21);
 $cart->model->insertItem($item, 1, 2); // inserts on id 1 and quantity 2
-$cart->model->updateQuantity(1, 3); // updates item 1 quantity to 3
 $cart->model->updateShippingCost(5); // updates shipping cost to 5
         </pre>
         <h4>Default Template</h4>

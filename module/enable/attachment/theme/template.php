@@ -4,9 +4,7 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-if (g('dl')) {
-    app()->download(THEME_PATH.'/default/img/'.g('dl'));
-}
+app()->download('path/to/file.pdf');
         </pre>
     </div>
 </div>

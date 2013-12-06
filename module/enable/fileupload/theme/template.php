@@ -12,7 +12,9 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-if ($file = f(0)) app()->upload($file, THEME_PATH.'/data');
+if ($file = f(0)) {
+    app()->upload($file, conf('THEME_PATH').'/data');
+}
 $fileupload = app()->createFileUpload();
         </pre>
         <h4>Default Template</h4>

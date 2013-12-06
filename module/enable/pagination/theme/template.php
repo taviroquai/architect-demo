@@ -9,7 +9,10 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$pagination = app()->createPagination();
+$pagination = app()->createPagination()
+    ->setLimit(3)
+    ->setTotalItems(10);
+    ->parseCurrent(app()->input);
         </pre>
         <h4>Default Template</h4>
         <pre>/theme/architect/pagination.php</pre>

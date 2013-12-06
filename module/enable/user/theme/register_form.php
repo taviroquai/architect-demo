@@ -16,19 +16,14 @@
         <?=app()->createCaptcha()?>
     </form>
     <h2>PHP</h2>
-    <h3>Create validator</h3>
+    <h3>Create rule to validate email address</h3>
     <pre>
-$validator = app()->createValidator();
-    </pre>
-    <h3>Create rule to validate email address format</h3>
-    <pre>
-$rule = $validator->createRule('email')
-    ->setErrorMessage('Invalid email address')
-    ->setAction('isEmail');
-$validator->addRule($rule);
+$rule = app()->input->createRule('email', 'IsEmail)
+    ->setErrorMessage('Invalid email address');
+app()->input->addRule($rule);
     </pre>
     <h3>Add more rules and finally get validation result</h3>
     <pre>
-    $result = $validator->validate()->getResult();
+$result = app()->input->validate()->getResult();
     </pre>
 </div>

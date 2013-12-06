@@ -12,7 +12,7 @@ $config = array(
     'action'    => u('/demo/scaffolding/save'),
     'items'     => array(
         array('type' => 'hidden',   'property'  => 'id'),
-        array('type' => 'label',    'label' => 'Email'),
+        array('type' => 'label',    'label'     => 'Email'),
         array('type' => 'text',     'property'  => 'email')
     )
 );
