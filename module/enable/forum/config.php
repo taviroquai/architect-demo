@@ -14,12 +14,12 @@ r('/demo/forum', function() {
 r('/demo/forum/(:any)', function($alias = 1) {
     
     $forum_model = new \Demo\ModelForum();
-    if (p('topic')) {
-        $topic_data = p('topic');
-        $post_data = p('post');
+    if (i('topic')) {
+        $topic_data = i('topic');
+        $post_data = i('post');
         $post_data['id_topic'] = $forum_model->addTopic($topic_data);
         $forum_model->addPost($post_data);
-        app()->redirect(u('/demo/forum/'.$alias));
+        help()->redirect(u('/demo/forum/'.$alias));
     }
     
     $item = $forum_model->getForumByAlias($alias);
@@ -36,9 +36,9 @@ r('/demo/forum/(:any)', function($alias = 1) {
 r('/demo/forum/(:any)/(:any)', function($falias, $alias) {
     
     $forum_model = new \Demo\ModelForum();
-    if (p('post')) {
-        $forum_model->addPost(p('post'));
-        app()->redirect(u('/demo/forum/'.$falias.'/'.$alias));
+    if (i('post')) {
+        $forum_model->addPost(i('post'));
+        help()->redirect(u('/demo/forum/'.$falias.'/'.$alias));
     }
     
     $topic = $forum_model->getTopicByAlias($alias);

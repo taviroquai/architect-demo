@@ -53,18 +53,21 @@ abstract class Social
             case 'twitter':
                 $id = $keys[$client]['id'];
                 $secret = $keys[$client]['secret'];
-                $instance = new \Demo\Twitter($id, $secret, app()->session);
+                $instance = new \Demo\Twitter($id, $secret, app()->getSession());
                 break;
             case 'facebook':
                 $id = $keys[$client]['id'];
                 $secret = $keys[$client]['secret'];
-                $instance = new \Demo\Facebook($id, $secret, app()->session);
+                $instance = new \Demo\Facebook($id, $secret, app()->getSession());
                 break;
             case 'google':
                 $id = $keys[$client]['id'];
                 $secret = $keys[$client]['secret'];
-                $instance = new \Demo\Google($id, $secret, app()->session);
+                $instance = new \Demo\Google($id, $secret, app()->getSession());
                 break;
+        }
+        if (is_null($instance)) {
+            throw new Exception('Invalid social client');
         }
         return $instance;
     }

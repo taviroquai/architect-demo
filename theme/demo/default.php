@@ -16,8 +16,8 @@ app()->addRoute('/hello', function() {
 });
           </pre>
       </li>
-      <li>Go to <a href="<?=app()->url('/hello')?>">hello</a> page</li>
-      <li>Also take a look at <a href="<?=app()->url('/demo')?>">demo</a> page</li>
+      <li>Go to <a href="<?=u('/hello')?>">hello</a> page</li>
+      <li>Also take a look at <a href="<?=u('/demo')?>">demo</a> page</li>
   </ol>
   
   <h2>Documentation</h2>

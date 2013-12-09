@@ -10,8 +10,8 @@
         <h4>PHP</h4>
         <pre>
 $explorer = app()->createFileExplorer(conf('THEME_PATH'))
-    ->set('url', app()->url('/demo/fileexplorer?'))
-    ->setInputParam(g($explorer->get('param')))
+    ->set('url', help()->url('/demo/fileexplorer?'))
+    ->setInputParam(i($explorer->get('param')))
     ->setPathToUrl(function($item) {
         return u('/download', array('file' => basename($item)));
     });

@@ -6,8 +6,8 @@
            value="123456">
     <input type="hidden" name="login" value="1" />
 
-    <!-- add captcha -->
-    <?=app()->createCaptcha()?>
+    <!-- add anti spam -->
+    <?=$anti_spam?>
 
     <button type="submit" class="btn">Sign in</button>
 </form>

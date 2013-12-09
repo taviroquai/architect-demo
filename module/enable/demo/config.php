@@ -1,10 +1,29 @@
 <?php
-        
+
+// load session manually - by default uses native php session
+e('arch.session.load', function () {
+    app()->getSession()->load();
+});
+
+// call save session - by default calls session_write_close()
+e('arch.session.save', function () {
+    app()->getSession()->save();
+});
+
+// load default theme manually
+e('arch.theme.load', function() {
+    theme(conf('THEME_PATH').DIRECTORY_SEPARATOR.'default');
+    theme()->set('idiom', help()->createIdiom());
+    $path = view()->createBreadcrumbs();
+    $path->parseAction(app()->getInput()->getAction(), app());
+    theme()->addContent($path);
+});
+
 // add main route
 r('/', function() {
 	// add content
-    $v = new \Arch\View(conf('THEME_PATH').'/demo/default.php');
-    $v->set('idiom', app()->createIdiom());
+    $v = view()->createView(conf('THEME_PATH').'/demo/default.php');
+    $v->set('idiom', help()->createIdiom());
     c($v);
 });
 
@@ -36,29 +55,9 @@ r('/demo', function() {
         array('title' => 'Tree View', 'href' => u('/demo/treeview'))
     );
     
-    $view = app()->createView(__DIR__.'/theme/template.php');
-    $view->id = 'demos-list';
-    $view->set('links', $links);
-    c($view);
+    $v = v(__DIR__.'/theme/template.php');
+    $v->id = 'demos-list';
+    $v->set('links', $links);
+    c($v);
 });
 
-// manually add session start
-e('arch.session.load', function () {
-    ini_set('session.gc_probability', 0);
-    @session_start();
-    app()->session->load($_SESSION);
-});
-
-e('arch.session.save', function () {
-    // trigger core event
-    app()->session->save($_SESSION);
-    @session_write_close();
-});
-
-// add demo stylesheet; use before theme render event
-e('arch.theme.after.load', function() {
-    c(conf('BASE_URL').'/theme/default/css/animate-custom.css', 'css');
-    c(conf('BASE_URL').'/theme/demo/css/style.css', 'css');
-    $path = app()->createBreadcrumbs();
-    c($path);
-});

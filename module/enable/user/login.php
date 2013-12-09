@@ -5,8 +5,9 @@ r('/demo/login', function() {
     
     // add view to content
     $view = new \Demo\ViewLogin();
-    $view->set('loginUrl', app()->url('/demo/login/post'));
-    $view->set('logoutUrl', app()->url('/demo/logout'));
+    $view->set('loginUrl', help()->url('/demo/login/post'));
+    $view->set('logoutUrl', help()->url('/demo/logout'));
+    $view->set('anti_spam', view()->createAntiSpam());
     c($view);
 });
 
@@ -14,36 +15,37 @@ r('/demo/login', function() {
 r('/demo/logout', function() {
     
     // destroy current session and redirect
-    session_destroy();
-    app()->session->reset();
-    app()->redirect();
+    app()->getSession()->reset();
+    help()->redirect();
 });
 
 // post to this route
 r('/demo/login/post', function() {
     
-    if (app()->getCaptcha()) {
+    $antispam = view()->createAntiSpam();
+    if ($antispam->validate()) {
         
         //validate input
+        $v = app()->getInput()->createValidator();
         $rules = array();
-        $rules[] = rule('email', 'Required', 'Email is required');
-        $rules[] = rule('email', 'IsEmail', 'Invalid email address');
-        $rules[] = rule('password', 'Required', 'Password is required');
-        $result = app()->input->validate($rules);
-        app()->session->loadMessages(app()->input->getMessages());
+        $rules[] = $v->createRule('email', 'Required', 'Email is required');
+        $rules[] = $v->createRule('email', 'IsEmail', 'Invalid email address');
+        $rules[] = $v->createRule('password', 'Required', 'Password is required');
+        $result = $v->validate($rules);
+        app()->getSession()->loadMessages($v->getMessages());
         
         if ($result) {
             // login user
             $model = new \Demo\ModelUser();
-            $user = $model->login(p('email'), p('password'));
+            $user = $model->login(i('email'), i('password'));
             
             if ($user) {
-                app()->session->set('login', $user->email);
-                app()->redirect();
+                session('login', $user->email);
+                help()->redirect();
             }
         }
-        app()->session->set('last_post', p());
+        session('last_post', i());
         sleep(2);
     }
-    app()->redirect (u('/demo/login'));
+    help()->redirect (u('/demo/login'));
 });

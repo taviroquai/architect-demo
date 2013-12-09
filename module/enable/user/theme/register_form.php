@@ -13,7 +13,7 @@
         <button class="btn">Register</button>
 
         <!-- add captcha -->
-        <?=app()->createCaptcha()?>
+        <?=view()->createAntiSpam()?>
     </form>
     <h2>PHP</h2>
     <h3>Create rule to validate email address</h3>

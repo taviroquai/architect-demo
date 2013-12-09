@@ -1,5 +1,5 @@
 <?php 
-$items = app()->getMessages();
+$items = app()->flushMessages();
 if (!empty($items)) { ?>
     <?php foreach ($items as $item) { ?>
     <div class="<?=$item->cssClass?>"><?=$item->text?></div>
@@ -10,4 +10,3 @@ if (!empty($items)) { ?>
         });
     </script>
 <?php } ?>
-<?php app()->clearMessages() ?>

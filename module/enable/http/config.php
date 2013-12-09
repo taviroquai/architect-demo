@@ -2,9 +2,9 @@
 
 r('/demo/http', function() {
     
-    $get_result = app()->httpGet(u('/demo/http/get'));
-    $post_result = app()->httpPost(
-        app()->url('/demo/http/post'),
+    $get_result = help()->httpGet(u('/demo/http/get'));
+    $post_result = help()->httpPost(
+        help()->url('/demo/http/post'),
         array('param' => 'post')
     );
     
@@ -21,5 +21,5 @@ r('/demo/http/get', function() {
 });
 
 r('/demo/http/post', function() {
-    o(p('param'));
+    o(i('param'));
 });

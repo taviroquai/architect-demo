@@ -14,8 +14,13 @@ r('/demo/crud', function() {
                 'action' => u('/demo/crud/del/'), 'property' => 'id')
         )
     );
-    $panel = app()->createAutoTable($config);
-    $panel->pagination->parseCurrent(app()->input);
+    
+    try {
+        $panel = view()->createAutoTable($config);
+        $panel->pagination->parseCurrent(app()->getInput());
+    } catch (\Exception $e) {
+        $panel = '';
+    }
 
     $v = v(__DIR__.'/theme/tablepanel.php');
     $v->addContent('<a class="btn" href="'.u('/demo/crud/0'.'">New</a>'));
@@ -50,7 +55,12 @@ r('/demo/crud/(:num)', function($id = 0) {
         )
     );
     if ($id) $config['record_id'] = $id;
-    $panel = app()->createAutoForm($config);
+    
+    try {
+        $panel = view()->createAutoForm($config);
+    } catch (\Exception $e) {
+        $panel = '';
+    }
 
     $v = v(__DIR__.'/theme/formpanel.php');
     $v->addContent($panel);
@@ -60,33 +70,34 @@ r('/demo/crud/(:num)', function($id = 0) {
 r('/demo/crud/save', function() {
     
     // save groups
-    q('demo_usergroup')->d('id_user = ?', array(p('id')))->run();
-    foreach (p('id_group') as $id => $v) {
-        $data = array('id_user' => p('id'), 'id_group' => $id);
+    app()->getInput()->sanitize('id', FILTER_SANITIZE_NUMBER_INT);
+    q('demo_usergroup')->d('id_user = ?', array(i('id')))->run();
+    foreach (i('id_group') as $id => $v) {
+        $data = array('id_user' => i('id'), 'id_group' => $id);
         q('demo_usergroup')->i($data)->getInsertId();
     }
     
     // save user
-    $data = array('email' => p('email'));
-    if (p('password') != '') $data['password'] = s(p('password'));
-    if (p('id') > 0) {
-        q('demo_user')->u($data)->w('id = ? ', array(p('id')))->getRowCount();
+    $data = array('email' => i('email'));
+    if (i('password') != '') $data['password'] = s(i('password'));
+    if (i('id') > 0) {
+        q('demo_user')->u($data)->w('id = ? ', array(i('id')))->getRowCount();
     }
     else {
         q('demo_user')->i($data)->getInsertId();
     }
     
     // redirect
-    app()->redirect(u('/demo/crud'));
+    help()->redirect(u('/demo/crud'));
 });
 
 r('/demo/crud/del/(:num)', function($id) {
     
     // delete user
-    q('demo_usergroup')->d('id_user = ?', array($id))->getRowCount();
-    q('demo_user')->d('id = ? ', array($id))->getRowCount();
+    q('demo_usergroup')->d('id_user = ?', array((int)$id))->getRowCount();
+    q('demo_user')->d('id = ? ', array((int)$id))->getRowCount();
     
     // redirect
-    app()->redirect(u('/demo/crud'));
+    help()->redirect(u('/demo/crud'));
 });
 

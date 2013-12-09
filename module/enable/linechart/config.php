@@ -2,7 +2,7 @@
 
 r('/demo/linechart', function() {
     
-    $chart = app()->createLineChart();
+    $chart = view()->createLineChart();
     $data = array(
         array("x" => "2011 W27", "y" => 100),
         array("x" => "2011 W28", "y" => 500)

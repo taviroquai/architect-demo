@@ -2,7 +2,7 @@
 
 r('/demo/breadcrumbs', function() {
     
-    $breadcrumbs = app()->createBreadcrumbs();
+    $breadcrumbs = view()->createBreadcrumbs();
     $breadcrumbs->addItem('Dummy', '#', 0);
 
     $view = v(__DIR__.'/theme/template.php')->addContent($breadcrumbs);

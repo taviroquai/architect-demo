@@ -13,6 +13,7 @@ r('/demo/register', function() {
     // add view to content
     $view = new \Demo\ViewRegister();
     $view->set('registerUrl', u('/demo/register/post'));
+    $view->set('anti_spam', view()->createAntiSpam());
     c($view);
 });
 
@@ -24,28 +25,30 @@ r('/demo/register-success', function() {
 // post to this route
 r('/demo/register/post', function() {
     
-    if (app()->getCaptcha()) {
+    $antispam = view()->createAntiSpam();
+    if ($antispam->validate()) {
         
         // validate input
+        $v = app()->getInput()->createValidator();
         $rules = array();
-        $rules[] = rule('email', 'IsEmail', 'Invalid email address');
-        $rules[] = rule('email', 'Unique', 'Use other email')
+        $rules[] = $v->createRule('email', 'IsEmail', 'Invalid email address');
+        $rules[] = $v->createRule('email', 'Unique', 'Use other email')
                 ->addParam(q('demo_user')->s('email')->fetchColumn());
-        $rules[] = rule('password', 'Required', 'Password cannot be empty');
-        $rules[] = rule('password', 'Equals', 'Password does not match')
-                ->addParam(p('password_confirm'));
-        $result = app()->input->validate($rules);
-        app()->session->loadMessages(app()->input->getMessages());
+        $rules[] = $v->createRule('password', 'Required', 'Password cannot be empty');
+        $rules[] = $v->createRule('password', 'Equals', 'Password does not match')
+                ->addParam(i('password_confirm'));
+        $result = $v->validate($rules);
+        app()->getSession()->loadMessages($v->getMessages());
 
         if ($result) {
             $model = new \Demo\ModelUser();
-            $user = $model->register(p());
+            $user = $model->register(i());
             if ($user) {
-                app()->redirect(u('/demo/register-success'));
+                help()->redirect(u('/demo/register-success'));
             }
         }
-        app()->session->set('last_post', p());
+        session('last_post', i());
         sleep(2);
     }
-    app()->redirect(u('/demo/register'));
+    help()->redirect(u('/demo/register'));
 });

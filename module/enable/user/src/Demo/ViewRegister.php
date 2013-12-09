@@ -8,12 +8,12 @@ class ViewRegister extends \Arch\View
         parent::__construct(__DIR__.'/../../theme/register_form.php');
 
         // set data
-        $post = app()->session->get('last_post');
+        $post = session('last_post');
         if (isset($post['email'])) {
             $this->set('email', $post['email']);
-            app()->session->delete('last_post');
+            app()->getSession()->delete('last_post');
         }
-        $email = app()->input->post('email');
+        $email = i('email');
         if (!empty($email)) {
             $this->set('email', $email);
         }

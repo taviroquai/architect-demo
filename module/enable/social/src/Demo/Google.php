@@ -34,17 +34,17 @@ class Google extends \Demo\Social {
             app()->redirect(u('/demo/social/google'));
         }
 
-        if (app()->input->get('code')) {
-            if (strval($this->session->get('gstate')) !== strval(app()->input->get('state'))) {
+        if (i('code')) {
+            if (strval($this->session->get('gstate')) !== strval(i('state'))) {
                 return false;
             }
-            $client->authenticate(app()->input->get('code'));
-            app()->session->set('gtoken', $client->getAccessToken());
+            $client->authenticate(i('code'));
+            session('gtoken', $client->getAccessToken());
             return true;
         } else {
             $state = mt_rand();
             $client->setState($state);
-            app()->session->set('gstate', $state);
+            session('gstate', $state);
             app()->redirect($client->createAuthUrl());
         }
         return false;

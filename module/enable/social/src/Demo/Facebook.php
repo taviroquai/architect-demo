@@ -29,8 +29,8 @@ class Facebook extends \Demo\Social {
             'access_token'  => NULL
         ));
 
-        if (app()->input->get('code')) {
-            $fbtoken = $api->getAccessToken(app()->input->get('code'));
+        if (i('code')) {
+            $fbtoken = $api->getAccessToken(i('code'));
             if (!empty($fbtoken)) {
                 $this->session->set('fbtoken', $fbtoken);
                 return true;

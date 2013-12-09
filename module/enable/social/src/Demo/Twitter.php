@@ -22,8 +22,8 @@ class Twitter extends \Demo\Social {
 
     public function connect($redirect_uri)
     {
-        if (app()->input->get('oauth_verifier')) {
-            $verifier = app()->input->get('oauth_verifier');
+        if (i('oauth_verifier')) {
+            $verifier = i('oauth_verifier');
             $connection = new \TwitterOAuth(
                 $this->id,
                 $this->secret,

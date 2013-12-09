@@ -43,8 +43,8 @@ class ModelUser
      */
     public function login($email, $password) {
         
-        $email      = app()->input->post('email');
-        $password   = s(app()->input->post('password'));
+        $email      = i('email');
+        $password   = s(i('password'));
         $user = $this->findOne(
             'email = ? and password = ?', 
             array($email, $password)
@@ -208,7 +208,7 @@ class ModelUser
                 $r = q('demo_user')->install($filename);
                 if (!$r) {
                     app()->log('Failed install database', 'error');
-                    app()->redirect(app()->url('/404'));
+                    app()->redirect(help()->url('/404'));
                 }
             }
         }

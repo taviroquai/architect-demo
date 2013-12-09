@@ -17,6 +17,8 @@
     
     <!-- Default PDO database  -->
     <item name="DB_DRIVER">mysql</item>
+    <!--<item name="DB_DRIVER">sqlite</item>-->
+    <!--<item name="DB_DRIVER">pgsql</item>-->
     <item name="DB_HOST">localhost</item>
     <item name="DB_DATABASE">architect</item>
     <!--<item name="DB_DATABASE">./theme/data/architect.db</item>-->

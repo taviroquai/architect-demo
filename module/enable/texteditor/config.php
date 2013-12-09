@@ -2,7 +2,7 @@
 
 r('/demo/texteditor', function() {
     
-    $editor = app()->createTextEditor();
+    $editor = view()->createTextEditor();
     $name = 'editor1';
     $editor->set('name', $name);
     $editor->set('value', '<p>paragraph</p>');

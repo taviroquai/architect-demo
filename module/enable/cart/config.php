@@ -3,7 +3,7 @@
 r('/demo/cart', function() {
     
     // demo of the shopping cart
-    $cart = app()->createCart();
+    $cart = view()->createCart();
     $cart->set('checkoutUrl', u('/demo/cart'));
     // if you use other item attributes please extend Model_Cart, View_Cart, 
     // copy template theme/default/cart.php and change attributes
@@ -12,11 +12,11 @@ r('/demo/cart', function() {
     $cart->model->updateQuantity(1, 3); // updates item 1 quantity to 3
     $cart->model->updateShippingCost(5); // updates shipping cost to 5
     
-    if (g('del')) {
-        $cart->model->updateQuantity(g('del'), 0);
+    if (i('del')) {
+        $cart->model->updateQuantity(i('del'), 0);
     }
-    if (p('quantity')) {
-        $items = p('quantity');
+    if (i('quantity')) {
+        $items = i('quantity');
         foreach (array_keys($items) as $id) {
             $cart->model->updateQuantity($id, (int) $items[$id]);
         }

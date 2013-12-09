@@ -2,7 +2,7 @@
 
 r('/demo/map', function() {
     
-    $map = app()->createMap()
+    $map = view()->createMap()
             ->set('lon', 0)
             ->set('lat', 0)
             ->set('zoom', 2);

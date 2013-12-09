@@ -4,12 +4,14 @@
 $this->addSlot('topbar');
 
 // set default template path
-$this->setTemplate(app()->config->get('THEME_PATH').'/default/layout.php');
+$this->setTemplate(conf('THEME_PATH').'/default/layout.php');
 
 // add theme css
-$base_url = app()->config->get('BASE_URL');
+$base_url = conf('BASE_URL');
 $this->addContent($base_url.'/theme/default/css/bootstrap.min.css', 'css');
 $this->addContent($base_url.'/theme/default/css/bootstrap-responsive.min.css', 'css');
+$this->addContent($base_url.'/theme/default/css/animate-custom.css', 'css');
+$this->addContent($base_url.'/theme/default/css/style.css', 'css');
 
 // add theme js
 $this->addContent($base_url.'/theme/default/js/bootstrap.min.js', 'js');
