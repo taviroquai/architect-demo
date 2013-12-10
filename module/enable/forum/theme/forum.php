@@ -38,7 +38,7 @@
         </table>
         <?php } ?>
     </div>
-    <?php $this->slot('content', function($item) { ?>
+    <?php $this->render('content', function($item) { ?>
         <?=$item?>
     <?})?>
 </div>

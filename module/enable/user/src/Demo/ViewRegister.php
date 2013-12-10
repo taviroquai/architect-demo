@@ -1,7 +1,7 @@
 <?php
 namespace Demo;
 
-class ViewRegister extends \Arch\View
+class ViewRegister extends \Arch\Registry\View
 {
     public function __construct()
     {

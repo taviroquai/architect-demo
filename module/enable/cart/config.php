@@ -22,6 +22,6 @@ r('/demo/cart', function() {
         }
     }
 
-    $view = v(__DIR__.'/theme/template.php')->addContent($cart);
-    c($view);
+    $layout = l(__DIR__.'/theme/template.php')->addContent($cart);
+    c($layout);
 });

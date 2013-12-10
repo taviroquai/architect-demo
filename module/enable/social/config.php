@@ -2,11 +2,11 @@
 
 // Default social page
 r('/demo/social', function() {
-    $v = view()->createView(__DIR__.'/theme/template.php');
-    $v->set('twitter_url',  u('/demo/social/connect/twitter'));
-    $v->set('facebook_url', u('/demo/social/connect/facebook'));
-    $v->set('google_url',   u('/demo/social/connect/google'));
-    c($v);
+    $layout = l(__DIR__.'/theme/template.php');
+    $layout->set('twitter_url',  u('/demo/social/connect/twitter'));
+    $layout->set('facebook_url', u('/demo/social/connect/facebook'));
+    $layout->set('google_url',   u('/demo/social/connect/google'));
+    c($layout);
     m('Dont forget to put client keys at /module/enable/social/lib/Social.php');
 });
 
@@ -21,11 +21,11 @@ r('/demo/social/twitter', function() {
     
     // Display Twitter profile
     $profile = $helper->getProfile();
-    $v = view()->createView(__DIR__.'/theme/user.php');
-    $v->set('name', $profile['name']);
-    $v->set('img_url', $profile['profile_image_url']);
-    $v->set('logout_url', u('/logout'));
-    c($v);
+    $layout = l(__DIR__.'/theme/user.php');
+    $layout->set('name', $profile['name']);
+    $layout->set('img_url', $profile['profile_image_url']);
+    $layout->set('logout_url', u('/logout'));
+    c($layout);
 });
 
 // Display Facebook profile
@@ -44,11 +44,11 @@ r('/demo/social/facebook', function() {
     $api = $helper->getApi();
     
     // Display Facebook profile
-    $v = view()->createView(__DIR__.'/theme/user.php');
-    $v->set('name', $profile->name);
-    $v->set('img_url', "https://graph.facebook.com/{$profile->id}/picture");
-    $v->set('logout_url', $api->getLogoutUrl(array('next' => u('/logout'))));
-    c($v);
+    $layout = l(__DIR__.'/theme/user.php');
+    $layout->set('name', $profile->name);
+    $layout->set('img_url', "https://graph.facebook.com/{$profile->id}/picture");
+    $layout->set('logout_url', $api->getLogoutUrl(array('next' => u('/logout'))));
+    c($layout);
 });
 
 // Display Google profile
@@ -72,11 +72,11 @@ r('/demo/social/google', function() {
     }
     
     // Display Google Plus profile
-    $v = view()->createView(__DIR__.'/theme/user.php');
-    $v->set('name', $profile['displayName']);
-    $v->set('img_url', $profile['image']['url']);
-    $v->set('logout_url', u('/demo/social/google', array('logout' => 1)));
-    c($v);
+    $layout = l(__DIR__.'/theme/user.php');
+    $layout->set('name', $profile['displayName']);
+    $layout->set('img_url', $profile['image']['url']);
+    $layout->set('logout_url', u('/demo/social/google', array('logout' => 1)));
+    c($layout);
 });
 
 // Connect to social network; endpoint for all clients workflow

@@ -11,6 +11,6 @@ r('/demo/poll', function() {
     $poll->set('labels', array('Votes'));
     if (i($poll->get('input_name'))) $poll->set('show_votes', true);
 
-    $view = v(__DIR__.'/theme/template.php')->addContent($poll);
-    c($view);
+    $layout = l(__DIR__.'/theme/template.php')->addContent($poll);
+    c($layout);
 });

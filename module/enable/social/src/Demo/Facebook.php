@@ -10,7 +10,7 @@ require_once __DIR__.'/../../vendor/facebook/Facebook_oauth.php';
 
 class Facebook extends \Demo\Social {
     
-    public function __construct($id, $secret, \Arch\Registry\Session $session)
+    public function __construct($id, $secret, \Arch\Registry\ISession $session)
     {
         parent::__construct($id, $secret, $session);
     }

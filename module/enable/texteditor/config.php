@@ -7,6 +7,6 @@ r('/demo/texteditor', function() {
     $editor->set('name', $name);
     $editor->set('value', '<p>paragraph</p>');
     
-    $view = v(__DIR__.'/theme/template.php')->addContent($editor);
-    c($view);
+    $layout = l(__DIR__.'/theme/template.php')->addContent($editor);
+    c($layout);
 });

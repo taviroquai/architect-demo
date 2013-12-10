@@ -7,7 +7,7 @@ r('/demo/pagination', function() {
     $pagination->setTotalItems(10);
     $pagination->parseCurrent();
 
-    $view = v(__DIR__.'/theme/template.php');
-    $view->set('pagination', $pagination);
-    c($view);
+    $layout = l(__DIR__.'/theme/template.php');
+    $layout->set('pagination', $pagination);
+    c($layout);
 });

@@ -26,7 +26,7 @@ r('/demo/login/post', function() {
     if ($antispam->validate()) {
         
         //validate input
-        $v = app()->getInput()->createValidator();
+        $v = help()->createValidator();
         $rules = array();
         $rules[] = $v->createRule('email', 'Required', 'Email is required');
         $rules[] = $v->createRule('email', 'IsEmail', 'Invalid email address');

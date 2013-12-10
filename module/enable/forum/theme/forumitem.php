@@ -48,7 +48,7 @@
         <label></label>
         <button type="submit" class="btn">Send</button>
     </form>
-    <?php $this->slot('content', function($item) { ?>
+    <?php $this->render('content', function($item) { ?>
         <?=$item?>
     <?})?>
 </div>

@@ -8,12 +8,12 @@ r('/demo/http', function() {
         array('param' => 'post')
     );
     
-    $view = v(__DIR__.'/theme/template.php');
-    $view->set('http_get_url', u('/demo/http/get'));
-    $view->set('http_post_url', u('/demo/http/post'));
-    $view->set('get_result', $get_result);
-    $view->set('post_result', $post_result);
-    c($view);
+    $layout = l(__DIR__.'/theme/template.php');
+    $layout->set('http_get_url', u('/demo/http/get'));
+    $layout->set('http_post_url', u('/demo/http/post'));
+    $layout->set('get_result', $get_result);
+    $layout->set('post_result', $post_result);
+    c($layout);
 });
 
 r('/demo/http/get', function() {

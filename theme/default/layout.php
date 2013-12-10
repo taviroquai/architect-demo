@@ -10,7 +10,7 @@
     <base href="<?=conf('BASE_URL')?>/" />
     
     <!-- Le styles -->
-    <?php $this->slot('css', function($item) { ?>
+    <?php $this->render('css', function($item) { ?>
     <link href="<?=$item?>" rel="stylesheet" />
     <?})?>
     <style type="text/css">
@@ -49,7 +49,7 @@
           </a>
           
           <div class="nav-collapse collapse">
-            <?php $this->slot('topbar', function($item) { ?>
+            <?php $this->render('topbar', function($item) { ?>
             <div><?=$item?></div>
             <?})?>
           </div><!--/.nav-collapse -->
@@ -63,7 +63,7 @@
       <?=$messages?>
       
       <!-- Add content items -->
-      <?php $this->slot('content', function($item) { ?>
+      <?php $this->render('content', function($item) { ?>
         <div><?=$item?></div>
       <?})?>
 
@@ -78,7 +78,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <?php $this->slot('js', function($item) { ?>
+    <?php $this->render('js', function($item) { ?>
     <script src="<?=$item?>" type="text/javascript"></script>
     <?})?>
 

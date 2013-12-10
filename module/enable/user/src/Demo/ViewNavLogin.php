@@ -1,7 +1,7 @@
 <?php
 namespace Demo;
 
-class ViewNavLogin extends \Arch\View
+class ViewNavLogin extends \Arch\Registry\View
 {
     public function __construct()
     {

@@ -1,6 +1,6 @@
 <div class="well">
     <h1>Automatic Table Demo</h1>
-    <?php $this->slot('content', function($item) { ?>
+    <?php $this->render('content', function($item) { ?>
         <div><?=$item?></div>
     <?})?>
     <div class="explain">

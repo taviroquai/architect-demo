@@ -29,7 +29,7 @@ r('/demo/register/post', function() {
     if ($antispam->validate()) {
         
         // validate input
-        $v = app()->getInput()->createValidator();
+        $v = help()->createValidator();
         $rules = array();
         $rules[] = $v->createRule('email', 'IsEmail', 'Invalid email address');
         $rules[] = $v->createRule('email', 'Unique', 'Use other email')

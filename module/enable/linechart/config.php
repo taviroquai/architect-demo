@@ -7,8 +7,9 @@ r('/demo/linechart', function() {
         array("x" => "2011 W27", "y" => 100),
         array("x" => "2011 W28", "y" => 500)
     );
-    $chart->set('data', $data)->set('labels', array('Sells'));
+    $chart->set('data', $data);
+    $chart->set('labels', array('Sells'));
 
-    $view = v(__DIR__.'/theme/template.php')->addContent($chart);
-    c($view);
+    $layout = l(__DIR__.'/theme/template.php')->addContent($chart);
+    c($layout);
 });

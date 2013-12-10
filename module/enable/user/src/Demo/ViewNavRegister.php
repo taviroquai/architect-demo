@@ -1,7 +1,7 @@
 <?php
 namespace Demo;
 
-class ViewNavRegister extends \Arch\View
+class ViewNavRegister extends \Arch\Registry\View
 {
     public function __construct()
     {

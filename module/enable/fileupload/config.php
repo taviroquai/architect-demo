@@ -8,6 +8,6 @@ r('/demo/fileupload', function() {
         $fileupload->upload($file, conf('THEME_PATH').'/data');
     }
 
-    $view = v(__DIR__.'/theme/template.php')->addContent($fileupload);
-    c($view);
+    $layout = l(__DIR__.'/theme/template.php')->addContent($fileupload);
+    c($layout);
 });

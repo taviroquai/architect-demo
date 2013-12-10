@@ -6,9 +6,9 @@ r('/demo/map', function() {
             ->set('lon', 0)
             ->set('lat', 0)
             ->set('zoom', 2);
-    $marker = $map->model->createMarker(0, 0, 'Hello Architect!', true);
-    $map->model->addMarker($marker);
+    $marker = $map->createMarker(0, 0, 'Hello Architect!', true);
+    $map->addMarker($marker);
 
-    $view = v(__DIR__.'/theme/template.php')->addContent($map);
-    c($view);
+    $layout = l(__DIR__.'/theme/template.php')->addContent($map);
+    c($layout);
 });

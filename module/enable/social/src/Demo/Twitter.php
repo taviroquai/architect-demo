@@ -10,7 +10,7 @@ require_once __DIR__.'/../../vendor/twitter/twitteroauth.php';
 
 class Twitter extends \Demo\Social {
     
-    public function __construct($id, $secret, \Arch\Registry\Session $session)
+    public function __construct($id, $secret, \Arch\Registry\ISession $session)
     {
         parent::__construct($id, $secret, $session);
     }

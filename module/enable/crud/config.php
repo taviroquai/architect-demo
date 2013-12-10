@@ -22,10 +22,10 @@ r('/demo/crud', function() {
         $panel = '';
     }
 
-    $v = v(__DIR__.'/theme/tablepanel.php');
-    $v->addContent('<a class="btn" href="'.u('/demo/crud/0'.'">New</a>'));
-    $v->addContent($panel);
-    c($v);
+    $layout = l(__DIR__.'/theme/tablepanel.php');
+    $layout->addContent('<a class="btn" href="'.u('/demo/crud/0'.'">New</a>'));
+    $layout->addContent($panel);
+    c($layout);
 });
 
 r('/demo/crud/(:num)', function($id = 0) {
@@ -62,15 +62,16 @@ r('/demo/crud/(:num)', function($id = 0) {
         $panel = '';
     }
 
-    $v = v(__DIR__.'/theme/formpanel.php');
-    $v->addContent($panel);
-    c($v);
+    $layout = l(__DIR__.'/theme/formpanel.php');
+    $layout->addContent($panel);
+    c($layout);
 });
 
 r('/demo/crud/save', function() {
     
     // save groups
     app()->getInput()->sanitize('id', FILTER_SANITIZE_NUMBER_INT);
+    app()->getInput()->sanitize('id_group', FILTER_SANITIZE_NUMBER_INT);
     q('demo_usergroup')->d('id_user = ?', array(i('id')))->run();
     foreach (i('id_group') as $id => $v) {
         $data = array('id_user' => i('id'), 'id_group' => $id);

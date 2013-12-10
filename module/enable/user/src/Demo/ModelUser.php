@@ -15,7 +15,7 @@ class ModelUser
     public function register($data)
     {    
         $email = $data['email'];
-        $view = new \Arch\View(conf('THEME_PATH').'/demo/email_template.php');
+        $view = new \Arch\Registry\View(conf('THEME_PATH').'/demo/email_template.php');
         $view->addContent("Thank you $email for registering!");
 
         $email_result = $this->mail($email, 'Register', $view);

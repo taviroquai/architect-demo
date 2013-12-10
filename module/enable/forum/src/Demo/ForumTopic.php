@@ -5,7 +5,7 @@ namespace Demo;
 /**
  * ForumTopic class
  */
-class ForumTopic extends \Arch\View
+class ForumTopic extends \Arch\Theme\Layout
 {
     /**
      * Returns a new forum topic view

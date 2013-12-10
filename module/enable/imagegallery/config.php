@@ -14,8 +14,8 @@ r('/demo/imagegallery', function() {
         return conf('BASE_URL').'/theme/data';
     });
 
-    $view = v(__DIR__.'/theme/template.php')->addContent($gallery);
-    c($view);
+    $layout = l(__DIR__.'/theme/template.php')->addContent($gallery);
+    c($layout);
 });
 
 e('demo.imagegallery.before.view', function()

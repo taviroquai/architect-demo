@@ -5,7 +5,7 @@ namespace Demo;
 /**
  * Forum class
  */
-class Forum extends \Arch\View
+class Forum extends \Arch\Theme\Layout
 {
     
     /**

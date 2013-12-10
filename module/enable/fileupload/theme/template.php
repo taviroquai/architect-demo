@@ -1,7 +1,7 @@
 <div class="well">
     <h1>File Upload Demo</h1>
     <form id="<?=$_id?>" method="post" enctype="multipart/form-data" title="Upload">
-        <?php $this->slot('content', function($item) { ?>
+        <?php $this->render('content', function($item) { ?>
             <div>
                 <?=$item?>
                 <div class="clearfix"></div>

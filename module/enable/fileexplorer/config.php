@@ -6,6 +6,6 @@ r('/demo/fileexplorer', function() {
     $explorer->set('url', help()->url('/demo/fileexplorer?'));
     $explorer->setInputParam(i($explorer->get('param')));
     
-    $view = v(__DIR__.'/theme/template.php')->addContent($explorer);
-    c($view);
+    $layout = l(__DIR__.'/theme/template.php')->addContent($explorer);
+    c($layout);
 });

@@ -2,7 +2,7 @@
 
 namespace Demo;
 
-class ViewLogin extends \Arch\View
+class ViewLogin extends \Arch\Registry\View
 {
     public function __construct()
     {

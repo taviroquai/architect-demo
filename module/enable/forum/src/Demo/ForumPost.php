@@ -5,7 +5,7 @@ namespace Demo;
 /**
  * ForumPost class
  */
-class ForumPost extends \Arch\View
+class ForumPost extends \Arch\Theme\Layout
 {
     /**
      * Returns a new forum post view

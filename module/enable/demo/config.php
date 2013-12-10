@@ -22,9 +22,9 @@ e('arch.theme.load', function() {
 // add main route
 r('/', function() {
 	// add content
-    $v = view()->createView(conf('THEME_PATH').'/demo/default.php');
-    $v->set('idiom', help()->createIdiom());
-    c($v);
+    $layout = l(__DIR__.'/theme/default.php');
+    $layout->set('idiom', help()->createIdiom());
+    c($layout);
 });
 
 // add demo route
@@ -55,9 +55,9 @@ r('/demo', function() {
         array('title' => 'Tree View', 'href' => u('/demo/treeview'))
     );
     
-    $v = v(__DIR__.'/theme/template.php');
-    $v->id = 'demos-list';
-    $v->set('links', $links);
-    c($v);
+    $layout = l(__DIR__.'/theme/template.php');
+    $layout->id = 'demos-list';
+    $layout->set('links', $links);
+    c($layout);
 });
 
