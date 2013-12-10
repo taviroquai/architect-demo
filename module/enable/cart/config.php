@@ -3,7 +3,7 @@
 r('/demo/cart', function() {
     
     // demo of the shopping cart
-    $cart = view()->createCart();
+    $cart = new \Demo\ViewCart();
     $cart->set('checkoutUrl', u('/demo/cart'));
     
     if (!$cart->getModel()->loadCart(app()->getSession())) {
