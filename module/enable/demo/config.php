@@ -13,7 +13,7 @@ e('arch.session.save', function () {
 // load default theme manually
 e('arch.theme.load', function() {
     theme(conf('THEME_PATH').DIRECTORY_SEPARATOR.'default');
-    theme()->set('idiom', help()->createIdiom());
+    theme()->set('idiom', help()->createIdiom()->execute());
     $path = view()->createBreadcrumbs();
     $path->parseAction(app()->getInput()->getAction(), app());
     theme()->addContent($path);
@@ -23,7 +23,7 @@ e('arch.theme.load', function() {
 r('/', function() {
 	// add content
     $layout = l(__DIR__.'/theme/default.php');
-    $layout->set('idiom', help()->createIdiom());
+    $layout->set('idiom', help()->createIdiom()->execute());
     c($layout);
 });
 

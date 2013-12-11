@@ -16,7 +16,7 @@ r('/demo/social/twitter', function() {
     $helper = \Demo\Social::factory('twitter');
     if (!$helper->isValid()) {
         m('Login with Twitter first', 'alert alert-error');
-        help()->redirect(u('/demo/social'));
+        redirect(u('/demo/social'));
     }
     
     // Display Twitter profile
@@ -34,12 +34,12 @@ r('/demo/social/facebook', function() {
     $helper = \Demo\Social::factory('facebook');
     if (!$helper->isValid()) {
         m('Login with Facebook first', 'alert alert-error');
-        help()->redirect(u('/demo/social'));
+        redirect(u('/demo/social'));
     }
     
     if (!$profile = $helper->getProfile()) {
         m('Could not get Facebook profile', 'alert alert-error');
-        help()->redirect(u('/demo/social'));
+        redirect(u('/demo/social'));
     }
     $api = $helper->getApi();
     
@@ -57,7 +57,7 @@ r('/demo/social/google', function() {
     $helper = \Demo\Social::factory('google');
     if (!$helper->isValid()) {
         m('Login with Google first', 'alert alert-error');
-        help()->redirect(u('/demo/social'));
+        redirect(u('/demo/social'));
     }
     
     if (i('logout')) {
@@ -68,7 +68,7 @@ r('/demo/social/google', function() {
         $profile = $helper->getProfile();
     } catch (\Google_ServiceException $e) {
         m('Google error: '.$e->getMessage(), 'alert alert-error');
-        help()->redirect(u('/demo/social'));
+        redirect(u('/demo/social'));
     }
     
     // Display Google Plus profile
@@ -84,18 +84,18 @@ r('/demo/social/connect/(:any)', function($client) {
     
     if (!in_array($client, array('twitter', 'facebook', 'google'))) {
         m('Invalid social client: '.$client, 'alert alert-error');
-        help()->redirect(u('/demo/social'));
+        redirect(u('/demo/social'));
     }
     
     $helper = \Demo\Social::factory($client);
     if ($helper->isValid()) {
-        help()->redirect(u('/demo/social/'.$client));
+        redirect(u('/demo/social/'.$client));
     }
     
     if ($helper->connect(u('/demo/social/connect/'.$client))) {
-        help()->redirect(u('/demo/social/'.$client));
+        redirect(u('/demo/social/'.$client));
     } else {
         m('Could not connect to '.$client, 'alert alert-error');
-        help()->redirect(u('/demo/social'));
+        redirect(u('/demo/social'));
     }
 });

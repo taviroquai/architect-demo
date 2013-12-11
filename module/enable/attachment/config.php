@@ -4,8 +4,8 @@ r('/demo/attachment', function() {
     
     $downloads_dir = conf('THEME_PATH').'/default/img/';
     if (i('dl')) {
-        if (!help()->download($downloads_dir.i('dl'))) {
-            help()->redirect(u('/404'));
+        if (!help()->createDownload($downloads_dir.i('dl'))->execute()) {
+            redirect(u('/404'));
         }
     }
 

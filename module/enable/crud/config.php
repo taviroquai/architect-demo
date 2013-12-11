@@ -16,7 +16,10 @@ r('/demo/crud', function() {
     );
     
     try {
-        $panel = view()->createAutoTable($config);
+        $panel = view()->createAutoTable();
+        $panel->setConfig($config);
+        $panel->setDatabaseDriver(app()->getDatabase());
+        $panel->setPagination(view()->createPagination());
         $panel->pagination->parseCurrent(app()->getInput());
     } catch (\Exception $e) {
         $panel = '';
@@ -57,11 +60,13 @@ r('/demo/crud/(:num)', function($id = 0) {
     if ($id) $config['record_id'] = $id;
     
     try {
-        $panel = view()->createAutoForm($config);
+        $panel = view()->createAutoForm();
+        $panel->setConfig($config);
+        $panel->setDatabaseDriver(app()->getDatabase());
     } catch (\Exception $e) {
         $panel = '';
     }
-
+    
     $layout = l(__DIR__.'/theme/formpanel.php');
     $layout->addContent($panel);
     c($layout);
@@ -89,7 +94,7 @@ r('/demo/crud/save', function() {
     }
     
     // redirect
-    help()->redirect(u('/demo/crud'));
+    redirect(u('/demo/crud'));
 });
 
 r('/demo/crud/del/(:num)', function($id) {
@@ -99,6 +104,6 @@ r('/demo/crud/del/(:num)', function($id) {
     q('demo_user')->d('id = ? ', array((int)$id))->getRowCount();
     
     // redirect
-    help()->redirect(u('/demo/crud'));
+    redirect(u('/demo/crud'));
 });
 

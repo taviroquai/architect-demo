@@ -9,7 +9,7 @@ class ViewNavLogin extends \Arch\Registry\View
 
         $login = session('login');
         if (empty($login)) {
-            $this->set('loginUrl', help()->url('/demo/login/post'));
+            $this->set('loginUrl', u('/demo/login/post'));
             $this->set('anti_spam', view()->createAntiSpam());
         }
         else {
@@ -17,7 +17,7 @@ class ViewNavLogin extends \Arch\Registry\View
             $this->setTemplate(__DIR__.'/../../theme/login_navsession.php');
 
             // set default data
-            $this->set('logoutUrl', help()->url('/demo/logout'));
+            $this->set('logoutUrl', u('/demo/logout'));
             $model = new \Demo\ModelUser();
             $user = $model->findOne('email = ?', array($login));
             $this->set('user', $user);

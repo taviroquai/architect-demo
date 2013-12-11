@@ -44,11 +44,11 @@ r('/demo/register/post', function() {
             $model = new \Demo\ModelUser();
             $user = $model->register(i());
             if ($user) {
-                help()->redirect(u('/demo/register-success'));
+                redirect(u('/demo/register-success'));
             }
         }
         session('last_post', i());
         sleep(2);
     }
-    help()->redirect(u('/demo/register'));
+    redirect(u('/demo/register'));
 });

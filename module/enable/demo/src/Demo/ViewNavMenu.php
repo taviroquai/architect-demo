@@ -9,6 +9,6 @@ class ViewNavMenu extends \Arch\View\Menu
         $this->template = __DIR__.'/../../theme/main_menu.php';
         
         // add demo menu item
-        $this->addItem('Demo', help()->url('/demo'));
+        $this->addItem('Demo', u('/demo'));
     }
 }

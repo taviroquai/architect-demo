@@ -5,8 +5,8 @@ r('/demo/login', function() {
     
     // add view to content
     $view = new \Demo\ViewLogin();
-    $view->set('loginUrl', help()->url('/demo/login/post'));
-    $view->set('logoutUrl', help()->url('/demo/logout'));
+    $view->set('loginUrl', u('/demo/login/post'));
+    $view->set('logoutUrl', u('/demo/logout'));
     $view->set('anti_spam', view()->createAntiSpam());
     c($view);
 });
@@ -16,7 +16,7 @@ r('/demo/logout', function() {
     
     // destroy current session and redirect
     app()->getSession()->reset();
-    help()->redirect();
+    redirect();
 });
 
 // post to this route
@@ -41,11 +41,11 @@ r('/demo/login/post', function() {
             
             if ($user) {
                 session('login', $user->email);
-                help()->redirect();
+                redirect();
             }
         }
         session('last_post', i());
         sleep(2);
     }
-    help()->redirect (u('/demo/login'));
+    redirect(u('/demo/login'));
 });
