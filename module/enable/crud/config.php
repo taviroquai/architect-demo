@@ -19,8 +19,10 @@ r('/demo/crud', function() {
         $panel = view()->createAutoTable();
         $panel->setConfig($config);
         $panel->setDatabaseDriver(app()->getDatabase());
-        $panel->setPagination(view()->createPagination());
-        $panel->pagination->parseCurrent(app()->getInput());
+        $pagination = view()->createPagination();
+        $pagination->setLimit(10);
+        $panel->setPagination($pagination);
+        $panel->getPagination()->parseCurrent(app()->getInput());
     } catch (\Exception $e) {
         $panel = '';
     }
