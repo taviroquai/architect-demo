@@ -77,8 +77,8 @@ r('/demo/crud/(:num)', function($id = 0) {
 r('/demo/crud/save', function() {
     
     // save groups
-    app()->getInput()->sanitize('id', FILTER_SANITIZE_NUMBER_INT);
-    app()->getInput()->sanitize('id_group', FILTER_SANITIZE_NUMBER_INT);
+    filter('id', FILTER_SANITIZE_NUMBER_INT);
+    filter('id_group', FILTER_SANITIZE_NUMBER_INT);
     q('demo_usergroup')->d('id_user = ?', array(i('id')))->run();
     foreach (i('id_group') as $id => $v) {
         $data = array('id_user' => i('id'), 'id_group' => $id);
