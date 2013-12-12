@@ -15,7 +15,7 @@ e('arch.theme.load', function() {
     theme(conf('THEME_PATH').DIRECTORY_SEPARATOR.'default');
     theme()->set('idiom', help()->createIdiom()->execute());
     $breadcrumbs = view()->createBreadcrumbs();
-    $breadcrumbs->parseAction(app()->getInput()->getAction(), app());
+    $breadcrumbs->parseAction(app());
     theme()->addContent($breadcrumbs);
 });
 

@@ -2,11 +2,15 @@
 
 r('/demo/http', function() {
     
-    $get_result = help()->createCurl(u('/demo/http/get'))->execute();
-    $post_result = help()->createCurl(
+    $curl_get = help()->createCurl(u('/demo/http/get'));
+    $curl_post = help()->createCurl(
         u('/demo/http/post'),
         array('param' => 'post')
-    )->execute();
+    );
+    $get_result = $curl_get->execute();
+    $post_result = $curl_post->execute();
+    $curl_get->closeConnection();
+    $curl_post->closeConnection();
     
     $layout = l(__DIR__.'/theme/template.php');
     $layout->set('http_get_url', u('/demo/http/get'));
