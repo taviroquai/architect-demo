@@ -31,7 +31,7 @@ class Google extends \Demo\Social {
         $client->setScopes(array('openid', 'profile', 'https://www.googleapis.com/auth/plus.me'));
 
         if ($this->session->get('gtoken')) {
-            app()->redirect(u('/demo/social/google'));
+            redirect(u('/demo/social/google'));
         }
 
         if (i('code')) {
@@ -45,7 +45,7 @@ class Google extends \Demo\Social {
             $state = mt_rand();
             $client->setState($state);
             session('gstate', $state);
-            app()->redirect($client->createAuthUrl());
+            redirect($client->createAuthUrl());
         }
         return false;
     }
@@ -84,6 +84,7 @@ class Google extends \Demo\Social {
         $gtoken = json_decode($this->session->get('gtoken'));
         $client->revokeToken($gtoken->access_token);
         $this->session->delete('gtoken');
-        app()->redirect($redirect_uri);
+        $this->session->reset();
+        redirect($redirect_uri);
     }
 }

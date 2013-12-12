@@ -37,6 +37,8 @@ r('/demo/login/post', function() {
         if ($result) {
             // login user
             $model = new \Demo\ModelUser();
+            filter('email', FILTER_SANITIZE_EMAIL);
+            filter('password', FILTER_SANITIZE_STRING);
             $user = $model->login(i('email'), i('password'));
             
             if ($user) {

@@ -36,7 +36,7 @@ class Facebook extends \Demo\Social {
                 return true;
             }
         } else {
-            app()->redirect($api->getAuthorizeUrl());
+            redirect($api->getAuthorizeUrl());
         }
         return false;
     }
@@ -65,12 +65,13 @@ class Facebook extends \Demo\Social {
         $profile = $fb->get('/me');
         if (!empty($profile->error)) {
             m('Facebook error: '.$profile->error->message);
-            app()->redirect(u('/demo/social'));
+            redirect(u('/demo/social'));
         }
         return $profile;
     }
     
     public function logout($redirect_uri) {
-        ;
+        $this->session->reset();
+        redirect($redirect_uri);
     }
 }

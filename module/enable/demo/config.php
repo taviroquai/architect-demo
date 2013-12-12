@@ -14,9 +14,9 @@ e('arch.session.save', function () {
 e('arch.theme.load', function() {
     theme(conf('THEME_PATH').DIRECTORY_SEPARATOR.'default');
     theme()->set('idiom', help()->createIdiom()->execute());
-    $path = view()->createBreadcrumbs();
-    $path->parseAction(app()->getInput()->getAction(), app());
-    theme()->addContent($path);
+    $breadcrumbs = view()->createBreadcrumbs();
+    $breadcrumbs->parseAction(app()->getInput()->getAction(), app());
+    theme()->addContent($breadcrumbs);
 });
 
 // add main route

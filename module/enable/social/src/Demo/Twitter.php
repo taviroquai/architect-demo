@@ -47,7 +47,7 @@ class Twitter extends \Demo\Social {
 
             if ($connection->http_code == 200) {
                 $url = $connection->getAuthorizeURL($token, FALSE);
-                app()->redirect($url); 
+                redirect($url); 
             }
         }
         return false;
@@ -82,6 +82,7 @@ class Twitter extends \Demo\Social {
     }
     
     public function logout($redirect_uri) {
-        ;
+        $this->session->reset();
+        redirect($redirect_uri);
     }
 }
