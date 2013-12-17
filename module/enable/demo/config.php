@@ -1,5 +1,19 @@
 <?php
 
+// load database manually
+e('arch.database.load', function() {
+    $factory = new \Arch\IFactory\DatabaseFactory();
+    $db = $factory->create(\Arch\IFactory\DatabaseFactory::TYPE_MYSQL);
+    $db->setLogger(app()->getLogger());
+    $db->connect(
+        app()->getConfig()->get('DB_HOST'),
+        app()->getConfig()->get('DB_DATABASE'),
+        app()->getConfig()->get('DB_USER'),
+        app()->getConfig()->get('DB_PASS')
+    );
+    app()->setDatabase($db);
+});
+
 // load session manually - by default uses native php session
 e('arch.session.load', function () {
     app()->getSession()->load();
