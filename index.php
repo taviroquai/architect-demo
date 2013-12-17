@@ -6,5 +6,6 @@ require_once 'vendor/taviroquai/architectphp/aliases.php';
 
 // IMPORTANT!!! Give configuration file and run application
 $config = "config/development.xml";
-$arch = new \Arch\App($config);
+$arch = new \Arch\App();
+$arch->getConfig()->load($config);
 $arch->run();
