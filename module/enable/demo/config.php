@@ -2,8 +2,8 @@
 
 // load database manually
 e('arch.database.load', function() {
-    $factory = new \Arch\IFactory\DatabaseFactory();
-    $db = $factory->create(\Arch\IFactory\DatabaseFactory::TYPE_MYSQL);
+    $factory = new \Arch\Factory\Database();
+    $db = $factory->create(\Arch::TYPE_DATABASE_MYSQL);
     $db->setLogger(app()->getLogger());
     $db->connect(
         app()->getConfig()->get('DB_HOST'),
