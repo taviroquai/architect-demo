@@ -27,7 +27,7 @@ e('demo.imagegallery.before.view', function()
             $originals = glob($theme_path.'/demo/img/*.*');
             foreach ($originals as $item) {
                 copy($item, $theme_path.'/data/'.basename($item));
-                help()->createImage($item)->execute()
+                help()->createImage($item)->run()
                         ->saveThumb($theme_path.'/data/thumb');
             }
         }

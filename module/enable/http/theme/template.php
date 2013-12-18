@@ -19,7 +19,7 @@ $curl = help()->createCurl(
     u('/demo/http/post'),
     array('param' => 'post')
 );
-$result = $curl_post->execute();
+$result = $curl_post->run();
 $curl->closeConnection();
         </pre>
         <h4>Default Template</h4>

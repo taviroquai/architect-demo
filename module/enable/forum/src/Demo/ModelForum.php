@@ -14,7 +14,7 @@ class ModelForum
      */
     public function addTopic($data)
     {
-        $data['alias']      = help()->createSlug($data['title'])->execute();
+        $data['alias']      = help()->createSlug($data['title'])->run();
         $data['id_user']    = 1;
         $data['datetime']   = date('Y-m-d H:i:s');
         return q('demo_topic')->i($data)->getInsertId();

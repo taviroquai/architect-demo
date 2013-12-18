@@ -7,8 +7,8 @@ r('/demo/http', function() {
         u('/demo/http/post'),
         array('param' => 'post')
     );
-    $get_result = $curl_get->execute();
-    $post_result = $curl_post->execute();
+    $get_result = $curl_get->run();
+    $post_result = $curl_post->run();
     $curl_get->closeConnection();
     $curl_post->closeConnection();
     
