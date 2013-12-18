@@ -4,7 +4,7 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-app()->download('path/to/file.pdf');
+help()->createDownload('path/to/file.pdf')->execute();
         </pre>
     </div>
 </div>

@@ -9,10 +9,7 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$gallery = app()->createImageGallery(conf('THEME_PATH').'/data');
-$gallery->setPathToUrl(function($path) {
-    return conf('BASE_URL').'/theme/data';
-});
+$gallery = view()->createImageGallery()->setPath(conf('THEME_PATH').'/data');
         </pre>
     </div>
 </div>

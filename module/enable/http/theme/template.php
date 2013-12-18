@@ -12,4 +12,17 @@
         <button class="btn" type="submit">Confirm POST request</button>
     </form>
     <div class="clearfix"></div>
+    <div class="explain">
+        <h4>PHP</h4>
+        <pre>
+$curl = help()->createCurl(
+    u('/demo/http/post'),
+    array('param' => 'post')
+);
+$result = $curl_post->execute();
+$curl->closeConnection();
+        </pre>
+        <h4>Default Template</h4>
+        <pre>/theme/architect/fileupload.php</pre>
+    </div>
 </div>

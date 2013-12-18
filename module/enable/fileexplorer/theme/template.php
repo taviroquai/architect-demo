@@ -9,12 +9,7 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$explorer = app()->createFileExplorer(conf('THEME_PATH'))
-    ->set('url', help()->url('/demo/fileexplorer?'))
-    ->setInputParam(i($explorer->get('param')))
-    ->setPathToUrl(function($item) {
-        return u('/download', array('file' => basename($item)));
-    });
+$explorer = view()->createFileExplorer()->setPath(conf('THEME_PATH'));
         </pre>
         <h4>Default Template</h4>
         <pre>/theme/architect/fileexplorer.php</pre>

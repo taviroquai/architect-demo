@@ -13,7 +13,7 @@ $data = array(
     array("x" => "2011 W27", "y" => 100),
     array("x" => "2011 W28", "y" => 500)
 );
-$chart = app()->createLineChart()
+$chart = view()->createLineChart()
     ->set('data', $data)
     ->set('labels', array('Sells'));
         </pre>

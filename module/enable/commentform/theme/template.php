@@ -9,7 +9,7 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$form = app()->createCommentform();
+$form = view()->createCommentform();
         </pre>
         <h4>Default Template</h4>
         <pre>/theme/architect/commentform.php</pre>

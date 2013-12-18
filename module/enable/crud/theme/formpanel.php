@@ -16,7 +16,8 @@ $config = array(
         array('type' => 'text',     'property'  => 'email')
     )
 );
-$form = app()->createAutoForm($config);
+$form = view()->createAutoForm()->setConfig($config);
+$form->setDatabaseDriver(app()->getDatabase);
         </pre>
         <h4>Default Template</h4>
         <pre>/theme/architect/form/form.php</pre>

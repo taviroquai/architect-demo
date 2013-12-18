@@ -10,7 +10,7 @@
         <em>Note: add your style sheet</em>
         <h4>PHP</h4>
         <pre>
-$carousel = app()->createCarousel()
+$carousel = view()->createCarousel()
     ->addItem('&lt;img src="#" /&gt;', 1);
     ->addItem('&lt;img src="#"  /&gt;', 0);
         </pre>

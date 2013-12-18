@@ -9,7 +9,7 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$editor = app()->createTextEditor();
+$editor = view()->createTextEditor();
 $editor->set('value', '&lt;p&gt;paragraph&lt;/p&gt;');
         </pre>
         <h4>Default Template</h4>

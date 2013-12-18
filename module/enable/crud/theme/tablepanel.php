@@ -13,7 +13,9 @@ $config = array(
         array('type' => 'value', 'label' => 'ID', 'property' => 'id')
     )
 );
-$table = app()->createAutoTable($config);
+$table = view()->createAutoTable()->setConfig($config);
+$table->setDatabaseDriver(app()->getDatabase);
+$table->setPagination(view()->createPegination());
         </pre>
         <h4>Default Template</h4>
         <pre>/theme/architect/table/table.php</pre>

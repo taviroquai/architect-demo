@@ -10,7 +10,7 @@
         <h4>PHP</h4>
         <em>Note: node type is DOMElement</em>
         <pre>
-$treeview = app()->createTreeView();
+$treeview = view()->createTreeView();
 $node1 = $treeview->createNode('label', 'Level 1');
 $treeview->createNode('label', 'Level 1.1', $node1);
 $treeview->createNode('label', 'Level 2');

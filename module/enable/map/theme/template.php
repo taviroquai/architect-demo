@@ -9,12 +9,12 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$map = app()->createMap()
+$map = view()->createMap()
             ->set('lon', 0)
             ->set('lat', 0)
             ->set('zoom', 2);
-$marker = $map->model->createMarker(0, 0, 'Hello Architect!', true);
-$map->model->addMarker($marker);
+$marker = $map->createMarker(0, 0, 'Hello Architect!', true);
+$map->addMarker($marker);
         </pre>
         <h4>Default Template</h4>
         <pre>/theme/architect/map.php</pre>

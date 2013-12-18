@@ -10,7 +10,7 @@
         <em>Powered by Morris and Raphael</em>
         <h4>PHP</h4>
         <pre>
-$poll = app()->createPoll();
+$poll = view()->createPoll();
 $poll->setVotes("Candidate 1", 123);
 $poll->setVotes("Candidate 2", 245);
 $poll->setVotes("Candidate 3", 23);

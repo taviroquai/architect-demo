@@ -18,9 +18,9 @@
     <h2>PHP</h2>
     <h3>Create rule to validate email address</h3>
     <pre>
-$rule = app()->input->createRule('email', 'IsEmail)
-    ->setErrorMessage('Invalid email address');
-app()->input->addRule($rule);
+$validator = help()->createValidator();
+$rules[] = $validator->createRule('email', 'IsEmail', 'Invalid email address');
+$validator->validate($rules);
     </pre>
     <h3>Add more rules and finally get validation result</h3>
     <pre>

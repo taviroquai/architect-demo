@@ -11,9 +11,7 @@ r('/demo/imagegallery', function() {
     // prepare gallery view
     $gallery = view()->createImageGallery();
     $gallery->setPath(conf('THEME_PATH').'/data');
-    $gallery->setPathToUrl(function($path) {
-        return conf('BASE_URL').'/theme/data';
-    });
+    $gallery->setPathToUrl(conf('BASE_URL').'/theme/data/');
 
     $layout = l(__DIR__.'/theme/template.php')->addContent($gallery);
     c($layout);
