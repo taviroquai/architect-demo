@@ -170,7 +170,6 @@ class ModelUser
     public function mail($to, $subject, $view)
     {
         try {
-            require_once conf('THEME_PATH').'/../vendor/phpmailer/class.phpmailer.php';
             $mail = new \PHPMailer(true); // defaults to using php "mail()"
             $mail->CharSet = 'UTF-8';
             $mail->SetFrom(MAIL_FROM, MAIL_FROMNAME);
