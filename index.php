@@ -8,4 +8,5 @@ require_once 'vendor/taviroquai/architectphp/aliases.php';
 $config = "config/development.xml";
 $arch = new \Arch\App();
 $arch->getConfig()->load($config);
+$arch->getLogger()->setFilename($arch->getConfig()->get('LOG_FILE'));
 $arch->run();
