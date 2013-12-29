@@ -15,7 +15,7 @@ class ModelUser
     public function register($data)
     {    
         $email = $data['email'];
-        $view = new \Arch\Registry\View(conf('THEME_PATH').'/demo/email_template.php');
+        $view = l(conf('THEME_PATH').'/demo/email_template.php');
         $view->addContent("Thank you $email for registering!");
 
         $email_result = $this->mail($email, 'Register', $view);
@@ -26,12 +26,9 @@ class ModelUser
             // finally register
             $user = $this->import($this->create(), $data);
             $user->password = s($user->password);
-            if ($this->save($user)) {
-                m("An email was sent to your address");
-                return $user;
-            } else {
-                m("Could not complete registration. Please ignore any email", 'alert alert-error');
-            }
+            $this->save($user);
+            m("An email was sent to your address");
+            return $user;
         }
         return false;
     }
@@ -183,10 +180,10 @@ class ModelUser
             $mail->AltBody = "Please use an HTML email viewer!";
             $mail->MsgHTML((string) $view);
             $result = $mail->Send();
-            app()->log("Sending mail to $to has succeed");
+            app()->getLogger()->log("Sending mail to $to has succeed");
         }
         catch (phpmailerException $e) {
-            app()->log(
+            app()->getLogger()->log(
                 "Sending mail to $to failed: ".$e->errorMessage(), 
                 'error'
             );
