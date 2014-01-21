@@ -1,4 +1,9 @@
 <config>
+    
+    <slot name="css"></slot>
+    
+    <slot name="js"></slot>
+    
     <slot name="topbar">
         <module>
             <classname>\Demo\ViewNavMenu</classname>
@@ -14,4 +19,5 @@
             <content><![CDATA[<ul class="nav"><li><a href="#">Module example</a></li></ul>]]></content>
         </module>
     </slot>
+    
 </config>

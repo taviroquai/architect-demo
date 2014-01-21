@@ -10,15 +10,19 @@
     <base href="<?=conf('BASE_URL')?>/" />
     
     <!-- Le styles -->
-    <?php $this->render('css', function($item) { ?>
-    <link href="<?=$item?>" rel="stylesheet" />
-    <?})?>
+    <link href="theme/default/css/bootstrap.min.css" rel="stylesheet" />
     <style type="text/css">
       body {
         padding-top: 60px !important;
         padding-bottom: 40px !important;
       }
     </style>
+    <link href="theme/default/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="theme/default/css/animate-custom.css" rel="stylesheet" />
+    <link href="theme/default/css/style.css" rel="stylesheet" />
+    <?php $this->render('css', function($item) { ?>
+    <link href="<?=$item?>" rel="stylesheet" />
+    <?php }) ?>
     
     <script type="text/javascript">
         var BASE_URL = '<?=conf('BASE_URL')?>/';
@@ -51,7 +55,7 @@
           <div class="nav-collapse collapse">
             <?php $this->render('topbar', function($item) { ?>
             <div><?=$item?></div>
-            <?})?>
+            <?php }) ?>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -59,28 +63,40 @@
 
     <div class="container">
 
-      <!-- Add flash messages -->
-      <?=$messages?>
-      
-      <!-- Add content items -->
-      <?php $this->render('content', function($item) { ?>
-        <div><?=$item?></div>
-      <?})?>
+    <!-- Add flash messages -->
+    <?php 
+    $items = app()->flushMessages();
+    if (!empty($items)) { ?>
+        <?php foreach ($items as $item) { ?>
+        <div class="<?=$item->cssClass?>"><?=$item->text?></div>
+        <?php } ?>
+        <script type="text/javascript">
+            jQuery(function($) {
+                $('.alert').addClass('animated shake');
+            });
+        </script>
+    <?php } ?>
 
-      <hr>
+    <!-- Add content items -->
+    <?php $this->render('content', function($item) { ?>
+      <div><?=$item?></div>
+    <?php }) ?>
 
-      <footer>
-          <p>Copyright 2013 &copy; Marco Afonso</p>
-      </footer>
+    <hr>
+
+    <footer>
+        <p>Copyright 2013 &copy; Marco Afonso</p>
+    </footer>
 
     </div> <!-- /container -->
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/theme/default/js/bootstrap.min.js" type="text/javascript"></script>
     <?php $this->render('js', function($item) { ?>
     <script src="<?=$item?>" type="text/javascript"></script>
-    <?})?>
+    <?php }) ?>
 
   </body>
 </html>
