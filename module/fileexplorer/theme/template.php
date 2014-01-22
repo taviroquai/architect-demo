@@ -9,9 +9,10 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$explorer = view()->createFileExplorer()->setPath(conf('THEME_PATH'));
+$explorer = view()->createFileExplorer()
+    ->setPath('path/to/explore');
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/fileexplorer.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/fileexplorer.php</pre>
     </div>
 </div>

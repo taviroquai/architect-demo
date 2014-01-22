@@ -18,6 +18,6 @@ $table->setDatabaseDriver(app()->getDatabase);
 $table->setPagination(view()->createPegination());
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/table/table.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/table/table.php</pre>
     </div>
 </div>

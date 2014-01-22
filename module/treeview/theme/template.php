@@ -16,6 +16,6 @@ $treeview->createNode('label', 'Level 1.1', $node1);
 $treeview->createNode('label', 'Level 2');
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/treeview.php</pre>
+        <pre>vendor/taviroquai/architectphp/treeview.php</pre>
     </div>
 </div>

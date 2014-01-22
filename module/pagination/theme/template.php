@@ -15,6 +15,6 @@ $pagination = view()->createPagination()
     ->parseCurrent();
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/pagination.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/pagination.php</pre>
     </div>
 </div>

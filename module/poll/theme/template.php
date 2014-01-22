@@ -19,6 +19,6 @@ $poll->setVotes("Candidate 5", 551);
 $poll->set('labels', array('Votes'));
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/pollchart.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/pollchart.php</pre>
     </div>
 </div>

@@ -14,6 +14,6 @@ $datepicker = view()->createDatePicker()
     ->set('value', date('Y/m/d', time() + 60*60*24));
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/datepicker.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/datepicker.php</pre>
     </div>
 </div>

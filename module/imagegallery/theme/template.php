@@ -9,7 +9,11 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$gallery = view()->createImageGallery()->setPath(conf('THEME_PATH').'/data');
+$gallery = view()->createImageGallery()
+    ->setPath('path/to/images')
+    ->setPathToUrl(conf('BASE_URL').'/path/to/images');
         </pre>
+        <h4>Default Template</h4>
+        <pre>vendor/taviroquai/architectphp/theme/imagegallery.php</pre>
     </div>
 </div>

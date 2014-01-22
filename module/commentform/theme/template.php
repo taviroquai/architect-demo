@@ -12,6 +12,6 @@
 $form = view()->createCommentform();
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/commentform.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/commentform.php</pre>
     </div>
 </div>

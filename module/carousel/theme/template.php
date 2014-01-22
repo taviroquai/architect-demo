@@ -15,6 +15,6 @@ $carousel = view()->createCarousel()
     ->addItem('&lt;img src="#"  /&gt;', 0);
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/carousel.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/carousel.php</pre>
     </div>
 </div>

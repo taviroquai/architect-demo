@@ -9,9 +9,9 @@
     <div class="explain">
         <h4>PHP</h4>
         <pre>
-$breadcrumbs = view()->createBreadcrumbs()->parseAction(app());
+$breadcrumbs = view()->createBreadcrumbs();
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/breadcrumbs.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/breadcrumbs.php</pre>
     </div>
 </div>

@@ -18,6 +18,6 @@ $chart = view()->createLineChart()
     ->set('labels', array('Sells'));
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/linechart.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/linechart.php</pre>
     </div>
 </div>

@@ -18,6 +18,6 @@ if ($file = f(0)) {
 }
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/fileupload.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/fileupload.php</pre>
     </div>
 </div>

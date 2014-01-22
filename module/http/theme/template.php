@@ -22,7 +22,5 @@ $curl = help()->createCurl(
 $result = $curl_post->run();
 $curl->closeConnection();
         </pre>
-        <h4>Default Template</h4>
-        <pre>/theme/architect/fileupload.php</pre>
     </div>
 </div>

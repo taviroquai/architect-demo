@@ -10,13 +10,13 @@
         <h4>PHP</h4>
         <pre>
 $map = view()->createMap()
-            ->set('lon', 0)
-            ->set('lat', 0)
-            ->set('zoom', 2);
+    ->set('lon', 0)
+    ->set('lat', 0)
+    ->set('zoom', 2);
 $marker = $map->createMarker(0, 0, 'Hello Architect!', true);
 $map->addMarker($marker);
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/map.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/map.php</pre>
     </div>
 </div>

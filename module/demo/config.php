@@ -30,7 +30,6 @@ e('arch.theme.load', function() {
     theme()->addContent(u('/arch/asset/js/arch.js'), 'js');
     theme()->set('idiom', help()->createIdiom()->run());
     $breadcrumbs = view()->createBreadcrumbs();
-    $breadcrumbs->parseAction(app());
     theme()->addContent($breadcrumbs);
 });
 

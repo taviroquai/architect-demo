@@ -20,6 +20,6 @@ $form = view()->createAutoForm()->setConfig($config);
 $form->setDatabaseDriver(app()->getDatabase);
         </pre>
         <h4>Default Template</h4>
-        <pre>/theme/architect/form/form.php</pre>
+        <pre>vendor/taviroquai/architectphp/theme/form/form.php</pre>
     </div>
 </div>
