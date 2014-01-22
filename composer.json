@@ -1,6 +1,6 @@
 {
 	"require": {
-		"taviroquai/architectphp": "1.0.0-beta",
+		"taviroquai/architectphp": "dev-master",
         "phpmailer/phpmailer": "dev-master"
 	}
 }
