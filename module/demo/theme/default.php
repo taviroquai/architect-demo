@@ -4,15 +4,15 @@
   
   <h2>Quick Start</h2>
   <ol>
-      <li>Create a new folder in <strong>module/enable/hello</strong></li>
-      <li>Create a new file in <strong>module/enable/hello/config.php</strong></li>
+      <li>Create a new folder in <strong>module/hello</strong></li>
+      <li>Create a new file in <strong>module/hello/config.php</strong></li>
       <li>Add the following content
           <pre>
 &lt;?php
 
-app()->addRoute('/hello', function() {
+r('/hello', function() {
     $message = '&lt;h1&gt;Hello World!&lt;h1&gt;';
-    app()->addContent($message);
+    c($message);
 });
           </pre>
       </li>
@@ -27,6 +27,6 @@ app()->addRoute('/hello', function() {
   <h2>Credits</h2>
   <p>Twitter Boostrap, jQuery, Quicksand font by Andrew Paglinawan, 
       Thiago de Arruda Datetime Picker, Jasny FileUpload (Jasny), 
-      Morris JS, Raphael JS, Google Maps, Leaflet JS, MindMup Wysiwyg and 
-      finally, PHP Composer/Packagist and Architect PHP Framework</p>
+      Morris JS, Raphael JS, Google Maps, Leaflet JS, MindMup Wysiwyg,
+      PHP Composer/Packagist and Architect PHP Framework</p>
 </div>
