@@ -56,7 +56,7 @@ CREATE INDEX `post_topic_fk_idx` ON `demo_post` (`id_topic`);
 CREATE INDEX `post_user_fk_idx` ON `demo_post` (`id_user`);
 
 INSERT INTO `demo_user` (`id`, `email`, `password`) VALUES
-(1, 'admin@domain.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
+(1, 'admin@domain.com', '$1$!Z%9y#8x$TwAtL.Wyhch4PDayYgFgK.');
 
 INSERT INTO `demo_group` (`id`, `name`) VALUES
 (1, 'admin'),

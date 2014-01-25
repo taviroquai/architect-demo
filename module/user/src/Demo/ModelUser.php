@@ -199,12 +199,12 @@ class ModelUser
     {
         if (!q('demo_user')->execute('select 1 from demo_user', null, '')) {
             if ($install) {
-                $filename = app()->config->get('MODULE_PATH')
-                        .'/enable/user/db/pgsql/install.sql';
+                $filename = conf('MODULE_PATH')
+                        .'/user/db/mysql/install.sql';
                 $r = q('demo_user')->install($filename);
                 if (!$r) {
-                    app()->log('Failed install database', 'error');
-                    app()->redirect(help()->url('/404'));
+                    app()->getLogger()->log('Failed install database', 'error');
+                    redirect(u('/404'));
                 }
             }
         }

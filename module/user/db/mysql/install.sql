@@ -105,7 +105,7 @@ ALTER TABLE `demo_post` ADD CONSTRAINT `post_user_fk` FOREIGN KEY (`id_user`) RE
 -- Insert default data
 --
 INSERT INTO `demo_user` (`id`, `email`, `password`) VALUES
-(1, 'admin@domain.com', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
+(1, 'admin@domain.com', '$1$!Z%9y#8x$TwAtL.Wyhch4PDayYgFgK.');
 -- password = 123456
 
 INSERT INTO `demo_group` (`id`, `name`) VALUES
