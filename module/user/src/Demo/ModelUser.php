@@ -201,7 +201,7 @@ class ModelUser
             if ($install) {
                 $filename = conf('MODULE_PATH')
                         .'/user/db/mysql/install.sql';
-                $r = q('demo_user')->install($filename);
+                $r = app()->getDatabase()->install($filename);
                 if (!$r) {
                     app()->getLogger()->log('Failed install database', 'error');
                     redirect(u('/404'));
