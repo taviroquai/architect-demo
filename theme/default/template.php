@@ -85,7 +85,7 @@
     <hr>
 
     <footer>
-        <p>Copyright 2013 &copy; Marco Afonso</p>
+        <p>Copyright 2013-2014 &copy; Marco Afonso</p>
     </footer>
 
     </div> <!-- /container -->
