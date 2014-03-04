@@ -16,8 +16,8 @@ $config = array(
         array('type' => 'text',     'property'  => 'email')
     )
 );
-$form = view()->createAutoForm()->setConfig($config);
-$form->setDatabaseDriver(app()->getDatabase);
+$form = view()->createAutoForm();
+$form->configure($config, app()->getDatabase());
         </pre>
         <h4>Default Template</h4>
         <pre>vendor/taviroquai/architectphp/theme/form/form.php</pre>

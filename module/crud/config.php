@@ -16,13 +16,15 @@ r('/demo/crud', function() {
     );
     
     try {
+        
+        $database = app()->getDatabase();
         $panel = view()->createAutoTable();
-        $panel->setConfig($config);
-        $panel->setDatabaseDriver(app()->getDatabase());
+        $panel->configure($config, $database);
         $pagination = view()->createPagination();
-        $pagination->setLimit(10);
+        $pagination->setLimit(2);
+        $pagination->parseCurrent(app()->getInput());
         $panel->setPagination($pagination);
-        $panel->getPagination()->parseCurrent(app()->getInput());
+        
     } catch (\Exception $e) {
         $panel = '';
     }
@@ -62,9 +64,9 @@ r('/demo/crud/(:num)', function($id = 0) {
     if ($id) $config['record_id'] = $id;
     
     try {
+        $database = app()->getDatabase();
         $panel = view()->createAutoForm();
-        $panel->setConfig($config);
-        $panel->setDatabaseDriver(app()->getDatabase());
+        $panel->configure($config, $database);
     } catch (\Exception $e) {
         $panel = '';
     }
@@ -76,23 +78,27 @@ r('/demo/crud/(:num)', function($id = 0) {
 
 r('/demo/crud/save', function() {
     
-    // save groups
+    // filter and get input
     filter('id', FILTER_SANITIZE_NUMBER_INT);
     filter('id_group', FILTER_SANITIZE_NUMBER_INT);
-    q('demo_usergroup')->d('id_user = ?', array(i('id')))->run();
-    foreach (i('id_group') as $id => $v) {
-        $data = array('id_user' => i('id'), 'id_group' => $id);
-        q('demo_usergroup')->i($data)->getInsertId();
-    }
+    $id = i('id');
+    $id_group = i('id_group');
     
     // save user
     $data = array('email' => i('email'));
     if (i('password') != '') $data['password'] = s(i('password'));
-    if (i('id') > 0) {
-        q('demo_user')->u($data)->w('id = ? ', array(i('id')))->getRowCount();
+    if ($id > 0) {
+        q('demo_user')->u($data)->w('id = ? ', array($id))->getRowCount();
     }
     else {
-        q('demo_user')->i($data)->getInsertId();
+        $id = q('demo_user')->i($data)->getInsertId();
+    }
+    
+    // save groups
+    q('demo_usergroup')->d('id_user = ?', array($id))->run();
+    foreach ($id_group as $gid => $v) {
+        $data = array('id_user' => $id, 'id_group' => $gid);
+        q('demo_usergroup')->i($data)->getInsertId();
     }
     
     // redirect

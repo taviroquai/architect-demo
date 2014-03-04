@@ -13,8 +13,8 @@ $config = array(
         array('type' => 'value', 'label' => 'ID', 'property' => 'id')
     )
 );
-$table = view()->createAutoTable()->setConfig($config);
-$table->setDatabaseDriver(app()->getDatabase);
+$table = view()->createAutoTable();
+$table->configure($config, app()->getDatabase());
 $table->setPagination(view()->createPegination());
         </pre>
         <h4>Default Template</h4>
