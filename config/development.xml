@@ -29,6 +29,6 @@
     <item name="DEFAULT_IDIOM">en</item>
     
     <!-- Default theme -->
-    <item name="DEFAULT_THEME">default</item>
+    <item name="DEFAULT_THEME">demo</item>
     
 </config>

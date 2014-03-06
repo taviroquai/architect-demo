@@ -26,7 +26,7 @@ e('arch.session.save', function () {
 
 // load default theme manually
 e('arch.theme.load', function() {
-    theme(conf('THEME_PATH').DIRECTORY_SEPARATOR.'default');
+    theme(conf('THEME_PATH').DIRECTORY_SEPARATOR.conf('DEFAULT_THEME'));
     theme()->addContent(u('/arch/asset/js/arch.js'), 'js');
     theme()->set('idiom', help()->createIdiom()->run());
     $breadcrumbs = view()->createBreadcrumbs();

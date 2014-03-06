@@ -19,7 +19,7 @@
     </style>
     <link href="theme/default/css/bootstrap-responsive.min.css" rel="stylesheet" />
     <link href="theme/default/css/animate-custom.css" rel="stylesheet" />
-    <link href="theme/default/css/style.css" rel="stylesheet" />
+    <link href="theme/demo/css/style.css" rel="stylesheet" />
     <?php $this->render('css', function($item) { ?>
     <link href="<?=$item?>" rel="stylesheet" />
     <?php }) ?>
@@ -49,7 +49,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="brand" href="<?=u('/')?>">
-              <img src="theme/default/img/arch_logo.png" />
+              <img src="theme/demo/img/arch_logo.png" />
           </a>
           
           <div class="nav-collapse collapse">
@@ -93,7 +93,7 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/theme/default/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="theme/default/js/bootstrap.min.js" type="text/javascript"></script>
     <?php $this->render('js', function($item) { ?>
     <script src="<?=$item?>" type="text/javascript"></script>
     <?php }) ?>
