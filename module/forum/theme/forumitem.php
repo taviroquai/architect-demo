@@ -50,5 +50,5 @@
     </form>
     <?php $this->render('content', function($item) { ?>
         <?=$item?>
-    <?})?>
+    <?php }); ?>
 </div>

@@ -8,7 +8,7 @@
                 </div>
             </a>
         </li>
-        <?}?>
+        <?php } ?>
     </ul>
     <div class="clearfix"></div>
 </div>

@@ -2,7 +2,7 @@
     <h1>Automatic Table Demo</h1>
     <?php $this->render('content', function($item) { ?>
         <div><?=$item?></div>
-    <?})?>
+    <?php }); ?>
     <div class="explain">
         <h4>PHP</h4>
         <pre>

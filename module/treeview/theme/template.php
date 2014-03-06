@@ -5,7 +5,7 @@
             <?=$item?>
             <div class="clearfix"></div>
         </div>
-    <?})?>
+    <?php }); ?>
     <div class="explain">
         <h4>PHP</h4>
         <em>Note: node type is DOMElement</em>

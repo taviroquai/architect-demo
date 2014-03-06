@@ -5,5 +5,5 @@
             <?=$item?>
             <div class="clearfix"></div>
         </div>
-    <?})?>
+    <?php }); ?>
 </div>

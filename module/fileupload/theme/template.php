@@ -6,7 +6,7 @@
                 <?=$item?>
                 <div class="clearfix"></div>
             </div>
-        <?})?>
+        <?php }); ?>
         <button type="submit" class="btn">Send</button>
     </form>
     <div class="explain">

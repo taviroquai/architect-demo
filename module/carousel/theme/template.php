@@ -5,7 +5,7 @@
             <?=$item?>
             <div class="clearfix"></div>
         </div>
-    <?})?>
+    <?php }); ?>
     <div class="explain">
         <em>Note: add your style sheet</em>
         <h4>PHP</h4>

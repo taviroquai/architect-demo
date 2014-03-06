@@ -5,7 +5,7 @@
             <?=$item?>
             <div class="clearfix"></div>
         </div>
-    <?})?>
+    <?php }); ?>
     <div class="explain">
         <em>Powered by Morris and Raphael</em>
         <h4>PHP</h4>
